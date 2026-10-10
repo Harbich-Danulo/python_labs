@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stream-processor"
+version = "0.1.0"
+description = "Laboratory work 3: Iterators, generators and stream processing in Python"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Danylo Harbich", email = "danul.harbich@lnu.edu.ua" }
+]
+keywords = ["iterators", "generators", "streaming", "pipeline", "itertools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+stream-processor = "stream_processor.main:main"

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Звіт з лабораторної роботи №3 - Гарбіч Данило</title>
+<style>
+    @page {
+        size: A4;
+        margin: 20mm 15mm 20mm 20mm;
+    }
+    
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12.5pt;
+        line-height: 1.35;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-break {
+        page-break-after: always;
+        break-after: page;
+    }
+
+    /* Title Page */
+    .title-page {
+        height: 94vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 20px 0;
+    }
+    .tp-header {
+        font-size: 13.5pt;
+        font-weight: bold;
+        line-height: 1.3;
+        text-transform: uppercase;
+        text-align: center;
+        color: #000;
+    }
+    .tp-subheader {
+        font-size: 12pt;
+        margin-top: 6px;
+        color: #111;
+        text-align: center;
+        text-transform: none;
+    }
+    .tp-body {
+        margin: auto 0;
+        text-align: center;
+    }
+    .tp-title-main {
+        font-size: 26pt;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+    .tp-title-sub {
+        font-size: 14pt;
+        font-weight: normal;
+        color: #111;
+        margin-bottom: 14px;
+    }
+    .tp-title-theme {
+        font-size: 18pt;
+        font-weight: bold;
+        color: #000;
+        line-height: 1.3;
+        padding: 0 40px;
+    }
+    .tp-sign {
+        width: 100%;
+        text-align: right;
+        font-size: 12.5pt;
+        line-height: 1.45;
+        margin-bottom: 40px;
+        padding-right: 10px;
+    }
+    .tp-footer {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Content styling */
+    h2 {
+        font-size: 14pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    h3 {
+        font-size: 12.5pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    p {
+        text-align: justify;
+        margin-top: 4px;
+        margin-bottom: 8px;
+        text-indent: 1.25cm;
+    }
+    .no-indent {
+        text-indent: 0;
+    }
+    ul, ol {
+        margin-top: 4px;
+        margin-bottom: 8px;
+        padding-left: 2.2cm;
+    }
+    li {
+        margin-bottom: 4px;
+        text-align: justify;
+    }
+
+    /* Code & Terminal Blocks */
+    pre, code {
+        font-family: 'Consolas', 'Courier New', monospace;
+    }
+    pre {
+        background-color: #f8f9fa;
+        border: 1px solid #d0d7de;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 9.5pt;
+        line-height: 1.25;
+        overflow-x: auto;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+    }
+    .terminal-box {
+        background-color: #1a202c;
+        color: #e2e8f0;
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        line-height: 1.25;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 10.5pt;
+        page-break-inside: avoid;
+    }
+    th, td {
+        border: 1px solid #a0aec0;
+        padding: 5px 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #edf2f7;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Q&A Section */
+    .qa-item {
+        margin-bottom: 12px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    .qa-q {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 2px;
+    }
+    .qa-a {
+        text-indent: 1.25cm;
+        text-align: justify;
+        margin-top: 0;
+    }
+</style>
+</head>
+<body>
+
+<!-- 1. ТИТУЛЬНА СТОРІНКА -->
+<div class="title-page page-break">
+    <div class="tp-header">
+        Міністерство освіти і науки України<br>
+        Львівський національний університет імені Івана Франка<br>
+        <div class="tp-subheader">Факультет електроніки та комп'ютерних технологій<br>Кафедра системного проектування</div>
+    </div>
+
+    <div class="tp-body">
+        <div class="tp-title-main">ЗВІТ</div>
+        <div class="tp-title-sub">про виконання лабораторної роботи №3<br>з курсу «Професійний Python»</div>
+        <div class="tp-title-theme">«Ітератори, генератори та потокова обробка даних»</div>
+    </div>
+
+    <div class="tp-sign">
+        Виконав:<br>
+        студент 3 курсу, групи ФЕП-31с<br>
+        Гарбіч Данило<br><br>
+        Перевірив:<br>
+        професор<br>
+        Свелеба Сергій Андрійович
+    </div>
+
+    <div class="tp-footer">
+        Львів — 2026
+    </div>
+</div>
+
+<!-- 2. ТЕМА -->
+<h2>2. Номер і тема лабораторної роботи</h2>
+<p class="no-indent"><strong>Лабораторна робота №3.</strong> «Ітератори, генератори та потокова обробка даних».</p>
+
+<!-- 3. МЕТА -->
+<h2>3. Мета роботи</h2>
+<p>Сформувати практичні навички роботи з ітераційною моделлю мови Python, протоколом ітератора (<code>__iter__</code> / <code>__next__</code>), генераторними функціями (<code>yield</code>, <code>yield from</code>), генераторними виразами (<code>generator expressions</code>), стандартним модулем <code>itertools</code>, концепцією відкладених лінивих обчислень (<code>lazy evaluation</code>) та організацією потокової обробки великих масивів даних без їхнього повного завантаження в оперативну пам'ять.</p>
+
+<!-- 4. ВАРІАНТ -->
+<h2>4. Номер індивідуального варіанта</h2>
+<p class="no-indent"><strong>Варіант №9:</strong> «Потокова обробка спортивних результатів».</p>
+
+<!-- 5. ПОСТАНОВКА ЗАДАЧІ -->
+<h2>5. Постановка задачі</h2>
+<p>Розробити потоковий конвеєр (<code>streaming lazy pipeline</code>) обробки великого набору даних для варіанта №9:</p>
+<ul>
+    <li>Потокова валідація спортивних результатів (<code>streaming validation</code>);</li>
+    <li>Фільтрація за видом спорту та категорією;</li>
+    <li>Визначення найкращого результату без повної матеріалізації колекцій;</li>
+    <li>Потоковий розрахунок середнього значення (<code>streaming average result</code>);</li>
+    <li>Формування рейтингу результатів;</li>
+    <li>Pairwise аналіз зміни послідовних результатів (<code>itertools.pairwise</code>);</li>
+    <li>Пакетна обробка потоку (<code>batching</code>);</li>
+    <li>Отримання перших N результатів за заданою умовою (<code>itertools.islice</code>);</li>
+    <li>Експериментальне порівняння eager та lazy підходів на вибірках 10 000, 100 000 та 500 000 записів.</li>
+</ul>
+
+<!-- 6. ОПИС INPUT DATASET -->
+<h2>6. Опис input dataset</h2>
+<p>Вхідні дані зберігаються у форматі CSV із заголовками: <code>athlete,sport,result,category,timestamp</code>.</p>
+<pre>
+athlete,sport,result,category,timestamp
+Ярослава Магучіх,Стрибки у висоту,2.10,Дорослі,2024-07-07T18:30:00
+Ірина Геращенко,Стрибки у висоту,2.00,Дорослі,2024-07-07T18:25:00
+Юлія Левченко,Стрибки у висоту,1.95,Дорослі,2024-07-07T18:15:00
+</pre>
+
+<!-- 7. СТРУКТУРА ПРОЄКТУ -->
+<h2>7. Структура проєкту</h2>
+<pre>
+lab3/
+├── .gitignore                      # Ігнорування кешу, .venv та великих датасетів
+├── pyproject.toml                  # Конфігурація пакета за стандартом PEP 621
+├── README.md                       # Технічна інструкція користувача
+├── REPORT.md                       # Повний текст звіту про виконання роботи
+├── data/
+│   └── input.csv                  # Зразок вхідного датасету
+│
+├── src/
+│   └── stream_processor/          # Головний пакет потокової обробки
+│       ├── __init__.py             # Версія програми (__version__ = "0.1.0")
+│       ├── models.py              # NamedTuple SportsRecord, класи SportsRange/Iterator
+│       ├── readers.py             # Генератори читання та очищення (yield from)
+│       ├── parsers.py             # Потоковий CSV парсер
+│       ├── filters.py             # Валідація та лінива фільтрація
+│       ├── transformations.py     # Нормалізація та пакетування (batching)
+│       ├── analytics.py           # Потокові агрегації (avg, min/max, pairwise)
+│       ├── pipeline.py            # Збирання лінивого конвеєра
+│       └── main.py                # Демонстрація, вимірювання та бенчмарки
+│
+└── tests/
+    └── test_stream_processor.py   # Модульні тести компонентів конвеєра
+</pre>
+
+<!-- 8. ПОЯСНЕННЯ ITERABLE ТА ITERATOR -->
+<h2>8. Пояснення iterable та iterator</h2>
+<p><strong>Iterable</strong> — об'єкт, з якого можна отримати ітератор через метод <code>__iter__()</code> (наприклад, списки, файли, кортежі). Може ітеруватися багаторазово.</p>
+<p><strong>Iterator</strong> — об'єкт зі збереженням стану обходу, який має метод <code>__next__()</code>, повертає значення по одному та піднімає <code>StopIteration</code> після вичерпання. Є одноразовим (one-shot object).</p>
+
+<!-- 9. КОД ВЛАСНОГО ITERATOR -->
+<h2>9. Код власного iterator</h2>
+<pre>
+class SportsRangeIterator:
+    def __init__(self, start: int, stop: int) -> None:
+        self.current = start
+        self.stop = stop
+
+    def __iter__(self) -> "SportsRangeIterator":
+        return self
+
+    def __next__(self) -> int:
+        if self.current >= self.stop:
+            raise StopIteration
+        val = self.current
+        self.current += 1
+        return val
+
+class SportsRange:
+    def __init__(self, start: int, stop: int) -> None:
+        self.start = start
+        self.stop = stop
+
+    def __iter__(self) -> SportsRangeIterator:
+        return SportsRangeIterator(self.start, self.stop)
+</pre>
+
+<!-- 10. ПРИКЛАД GENERATOR FUNCTION -->
+<h2>10. Приклад generator function</h2>
+<pre>
+def clean_lines(lines: Iterator[str]) -> Iterator[str]:
+    for line in lines:
+        cleaned = line.strip()
+        if cleaned:
+            yield cleaned
+</pre>
+
+<!-- 11. ПРИКЛАД YIELD -->
+<h2>11. Приклад yield</h2>
+<pre>
+def filter_by_sport(records: Iterable[SportsRecord], sport: str) -> Iterator[SportsRecord]:
+    target = sport.strip().lower()
+    for record in records:
+        if record.sport.strip().lower() == target:
+            yield record
+</pre>
+
+<!-- 12. ПРИКЛАД YIELD FROM -->
+<h2>12. Приклад yield from</h2>
+<pre>
+def read_lines(path: Path) -> Iterator[str]:
+    with path.open("r", encoding="utf-8") as file:
+        yield from file
+</pre>
+
+<!-- 13. GENERATOR EXPRESSION -->
+<h2>13. Generator expression</h2>
+<pre>
+high_jump_scores = (r.result for r in stream if r.sport == "Стрибки у висоту")
+total_score = sum(high_jump_scores)
+</pre>
+
+<!-- 14. ВИКОРИСТАНІ ЗАСОБИ ITERTOOLS -->
+<h2>14. Використані засоби itertools</h2>
+<ul>
+    <li><code>itertools.islice</code> — вибірка перших N записів без читання всього потоку.</li>
+    <li><code>itertools.pairwise</code> — аналіз динаміки зміни результатів між сусідніми спробами.</li>
+    <li><code>itertools.chain</code> — об'єднання декількох потоків в один послідовний ланцюг.</li>
+</ul>
+
+<!-- 15. СХЕМА PIPELINE -->
+<div class="page-break"></div>
+<h2>15. Схема pipeline для звіту</h2>
+<pre>
+Input file (CSV)
+      │
+      ▼
+read_lines() [yield from]
+      │
+      ▼
+clean_lines()
+      │
+      ▼
+parse_csv_rows() [DictReader, yield from]
+      │
+      ▼
+validate_records() [validation, drop invalid]
+      │
+      ▼
+normalize_athlete_names() [title-case]
+      │
+      ▼
+filter_by_sport() / filter_by_category() [lazy filtering]
+      │
+      ▼
+batched_records() [itertools.islice]
+      │
+      ▼
+calculate_stream_statistics() / streaming_average() [aggregation]
+      │
+      ▼
+Result (O(1) memory)
+</pre>
+
+<!-- 16-21. КОД СТАДІЙ -->
+<h2>16. Код streaming reader</h2>
+<pre>
+def read_lines(path: Path) -> Iterator[str]:
+    with path.open("r", encoding="utf-8") as file:
+        yield from file
+</pre>
+
+<h2>17. Validation stage</h2>
+<pre>
+def validate_records(rows: Iterable[dict[str, str]], invalid_counter: list[int] | None = None) -> Iterator[SportsRecord]:
+    for row in rows:
+        try:
+            athlete = row.get("athlete", "").strip()
+            sport = row.get("sport", "").strip()
+            category = row.get("category", "").strip()
+            timestamp = row.get("timestamp", "").strip()
+            result_val = float(row.get("result", ""))
+
+            if not athlete or not sport or not category or result_val < 0:
+                if invalid_counter is not None:
+                    invalid_counter[0] += 1
+                continue
+
+            yield SportsRecord(athlete, sport, result_val, category, timestamp)
+        except (ValueError, TypeError, KeyError):
+            if invalid_counter is not None:
+                invalid_counter[0] += 1
+            continue
+</pre>
+
+<h2>18. Filtering stage</h2>
+<pre>
+def filter_by_sport(records: Iterable[SportsRecord], sport: str) -> Iterator[SportsRecord]:
+    target = sport.strip().lower()
+    for record in records:
+        if record.sport.strip().lower() == target:
+            yield record
+</pre>
+
+<h2>19. Transformation stage</h2>
+<pre>
+def normalize_athlete_names(records: Iterable[SportsRecord]) -> Iterator[SportsRecord]:
+    for record in records:
+        yield record._replace(athlete=record.athlete.title())
+</pre>
+
+<h2>20. Aggregation stage</h2>
+<pre>
+def streaming_average(records: Iterable[SportsRecord]) -> float:
+    total = 0.0
+    count = 0
+    for r in records:
+        total += r.result
+        count += 1
+    return round(total / count, 2) if count else 0.0
+</pre>
+
+<h2>21. Batching</h2>
+<pre>
+def batched_records(records: Iterable[SportsRecord], batch_size: int) -> Iterator[list[SportsRecord]]:
+    iterator = iter(records)
+    while True:
+        batch = list(islice(iterator, batch_size))
+        if not batch:
+            return
+        yield batch
+</pre>
+
+<h2>22. Eager implementation</h2>
+<pre>
+def eager_read_all(path: Path) -> list[dict[str, str]]:
+    with path.open("r", encoding="utf-8", newline="") as file:
+        reader = csv.DictReader(file)
+        return list(reader)  # Повна матеріалізація в пам'яті
+</pre>
+
+<h2>23. Lazy implementation</h2>
+<pre>
+def lazy_processing(path: Path, sport: str) -> float:
+    stream = build_pipeline(path, sport_filter=sport)
+    return streaming_average(stream)  # Одночасно в пам'яті лише один запис
+</pre>
+
+<!-- 24-26. ЕКСПЕРИМЕНТ ТА ТАБЛИЦІ -->
+<div class="page-break"></div>
+<h2>24. Таблиця elapsed time</h2>
+
+<table>
+    <tr>
+        <th>Кількість записів</th>
+        <th>Eager час виконання</th>
+        <th>Lazy час виконання</th>
+        <th>Time-to-first-result (Lazy)</th>
+    </tr>
+    <tr>
+        <td><strong>10 000</strong></td>
+        <td>0.1351 с</td>
+        <td>0.2183 с</td>
+        <td>0.000215 с</td>
+    </tr>
+    <tr>
+        <td><strong>100 000</strong></td>
+        <td>1.1520 с</td>
+        <td>2.0398 с</td>
+        <td>0.002283 с</td>
+    </tr>
+    <tr>
+        <td><strong>500 000</strong></td>
+        <td>5.9050 с</td>
+        <td>9.6891 с</td>
+        <td>0.000302 с</td>
+    </tr>
+</table>
+
+<h2>25. Таблиця peak memory</h2>
+
+<table>
+    <tr>
+        <th>Кількість записів</th>
+        <th>Eager пікова пам'ять</th>
+        <th>Lazy пікова пам'ять</th>
+        <th>Коефіцієнт економії RAM</th>
+    </tr>
+    <tr>
+        <td><strong>10 000</strong></td>
+        <td>4.88 МБ</td>
+        <td>0.22 МБ</td>
+        <td><strong>22.2×</strong></td>
+    </tr>
+    <tr>
+        <td><strong>100 000</strong></td>
+        <td>48.65 МБ</td>
+        <td>0.22 МБ</td>
+        <td><strong>221.1×</strong></td>
+    </tr>
+    <tr>
+        <td><strong>500 000</strong></td>
+        <td>243.90 МБ</td>
+        <td>0.07 МБ</td>
+        <td><strong>3484.3×</strong></td>
+    </tr>
+</table>
+
+<h2>26. Аналіз результатів</h2>
+<p>1. <strong>Використання пам'яті:</strong> у eager-підході обсяг пам'яті строго масштабується лінійно від розміру вхідного файлу (досягає 243.90 МБ на 500k рядках). Lazy-підхід демонструє стабільні показники (0.07–0.22 МБ), надаючи економію пам'яті понад <strong>3484 рази</strong>.</p>
+<p>2. <strong>Загальний час виконання:</strong> Eager-підхід завершується дещо швидше на повній вибірці через відсутність накладних витрат генераторних викликів. Отже, генератори оптимізують насамперед пам'ять, а не час повного прогону.</p>
+<p>3. <strong>Time-to-first-result:</strong> Lazy-конвеєр повертає перші валідні дані практично миттєво (за 0.0003 с), тоді як Eager-варіант блокує виконання на 5.9 секунд.</p>
+
+<!-- 27. КОНТРОЛЬНІ ЗАПИТАННЯ -->
+<div class="page-break"></div>
+<h2>27. Відповіді на контрольні запитання</h2>
+
+<div class="qa-item">
+    <div class="qa-q">1. Що таке iterable?</div>
+    <div class="qa-a">Об'єкт у Python, з якого можна отримати ітератор за допомогою виклику iter(); реалізує метод __iter__() або __getitem__().</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">2. Що таке iterator?</div>
+    <div class="qa-a">Об'єкт, що зберігає стан обходу послідовності, реалізує метод __next__() та метод __iter__(), що повертає self.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">3. Чим iterable відрізняється від iterator?</div>
+    <div class="qa-a">Iterable — це багаторазове джерело даних. Iterator — це одноразовий об'єкт-покажчик, що вичерпується після завершення обходу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">4. Для чого використовується iter()?</div>
+    <div class="qa-a">Для явного отримання об'єкта-ітератора з довільного ітерованого об'єкта.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">5. Для чого використовується next()?</div>
+    <div class="qa-a">Для запиту наступного елемента в ітератора або генерації винятку StopIteration, якщо елементи вичерпано.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">6. Що робить __iter__()?</div>
+    <div class="qa-a">В iterable створює новий ітератор; в ітераторі повертає сам об'єкт self.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">7. Що робить __next__()?</div>
+    <div class="qa-a">Повертає наступне значення послідовності або піднімає виняток StopIteration.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">8. Що таке StopIteration?</div>
+    <div class="qa-a">Стандартний виняток Python, що сигналізує про завершення ітерації.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">9. Як цикл for використовує iterator protocol?</div>
+    <div class="qa-a">Викликає iter() на початку, в циклі викликає next() та автоматично обробляє виняток StopIteration.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">10. Чому iterator часто називають one-shot object?</div>
+    <div class="qa-a">Тому що він рухається лише вперед і після повного проходу не може бути скинутий на початок.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">11. Чому iter(iterator) is iterator?</div>
+    <div class="qa-a">Оскільки метод __iter__() ітератора зобов'язаний повертати сам об'єкт self для сумісності з протоколом.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">12. Чи можна повторно використати exhausted generator?</div>
+    <div class="qa-a">Ні, вичерпаний генератор порожній; для повторного обходу треба створити новий екземпляр генератора.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">13. Що таке generator function?</div>
+    <div class="qa-a">Функція, яка містить ключове слово yield і повертає об'єкт-генератор замість прямого виконання тіла.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">14. Яку роль виконує yield?</div>
+    <div class="qa-a">Повертає поточне значення, заморожує виконання функції та зберігає стан локальних змінних.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">15. Чим yield відрізняється від return?</div>
+    <div class="qa-a">return остаточно завершує роботу функції; yield призупиняє функцію з можливістю продовження з тієї ж точки.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">16. Коли фактично починає виконуватися generator function?</div>
+    <div class="qa-a">Під час першого виклику next() над отриманим об'єктом-генератором.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">17. Що зберігає generator між викликами next()?</div>
+    <div class="qa-a">Покажчик поточної інструкції, локальні змінні, фрейм стека та стан обробників винятків.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">18. Що таке generator expression?</div>
+    <div class="qa-a">Компактна синтаксична форма (expr for item in iterable), яка створює лінивий генератор без виділення пам'яті під список.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">19. Чим generator expression відрізняється від list comprehension?</div>
+    <div class="qa-a">List comprehension матеріалізує весь список у пам'яті одразу, а generator expression генерує елементи по одному за вимогою.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">20. Що таке lazy evaluation?</div>
+    <div class="qa-a">Обчислення значень за запитом без попереднього розрахунку всього масиву.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">21. Що таке eager evaluation?</div>
+    <div class="qa-a">Жадібне обчислення, коли весь результат рахується й зберігається в пам'яті відразу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">22. Які переваги lazy evaluation?</div>
+    <div class="qa-a">Мінімальне споживання пам'яті, миттєвий доступ до перших значень, підтримка нескінченних потоків та раннього виходу (early termination).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">23. Які недоліки lazy evaluation?</div>
+    <div class="qa-a">Одноразовість обходу, неможливість прямої індексації або швидкого визначення довжини len().</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">24. Що таке streaming?</div>
+    <div class="qa-a">Потокова обробка даних порціями без повного завантаження датасету в оперативну пам'ять.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">25. Чому streaming важливий для великих files?</div>
+    <div class="qa-a">Він унеможливлює вичерпання RAM (MemoryError), якщо розмір файлу перевищує обсяг доступної оперативної пам'яті.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">26. Чому read() може бути проблемою для multi-GB file?</div>
+    <div class="qa-a">Оскільки метод read() зчитує весь багатогігабайтний файл в єдиний монолітний рядок у пам'яті.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">27. Чому file object є iterable?</div>
+    <div class="qa-a">Він реалізує протокол ітератора, ліниво повертаючи рядки через буфер по одному за викликом next().</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">28. Для чого використовується yield from?</div>
+    <div class="qa-a">Для прозорого делегування генерації елементів іншому генератору чи ітерованому об'єкту.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">29. Що таке itertools?</div>
+    <div class="qa-a">Стандартний високоефективний модуль Python для комбінаторних і потокових операцій над ітераторами.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">30. Для чого itertools.count()?</div>
+    <div class="qa-a">Генерує нескінченну послідовність чисел із заданим кроком: count(start, step).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">31. Чому count() потрібно обмежувати?</div>
+    <div class="qa-a">Оскільки без обмеження (наприклад, через islice) операція перетворення на список ніколи не завершиться.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">32. Для чого islice()?</div>
+    <div class="qa-a">Для виконання зрізу по ітератору без матеріалізації всієї послідовності.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">33. Для чого chain()?</div>
+    <div class="qa-a">Для послідовного склеювання декількох ітераторів в один суцільний потік.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">34. Як працює takewhile()?</div>
+    <div class="qa-a">Повертає елементи, доки предикат повертає True, і негайно зупиняється на першому False.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">35. Як працює dropwhile()?</div>
+    <div class="qa-a">Пропускає елементи, доки предикат повертає True, після чого повертає всі наступні елементи до кінця.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">36. Для чого accumulate()?</div>
+    <div class="qa-a">Для обчислення накопичувальних значень (кумулятивної суми тощо).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">37. Для чого pairwise()?</div>
+    <div class="qa-a">Для попарного ковзного аналізу сусідніх елементів: (s0, s1), (s1, s2)...</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">38. Як працює groupby()?</div>
+    <div class="qa-a">Групує поспіль розташовані елементи з однаковим ключем групування.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">39. Чому перед groupby() часто потрібне sorting?</div>
+    <div class="qa-a">Тому що groupby не групує елементи з однаковими ключами, якщо вони розділені іншими ключами в потоці.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">40. Що робить product()?</div>
+    <div class="qa-a">Обчислює декартовий добуток вхідних послідовностей.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">41. Чим combinations() відрізняється від permutations()?</div>
+    <div class="qa-a">combinations повертає невпорядковані комбінації без повторів, а permutations враховує порядок елементів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">42. Чому combinatorial iterators можуть бути небезпечними навіть при lazy execution?</div>
+    <div class="qa-a">Кількість їхніх комбінацій зростає експоненційно або факторіально, що викличе колосальний час виконання.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">43. Що таке batching?</div>
+    <div class="qa-a">Розбиття безперервного потоку даних на порції фіксованого розміру для масової обробки.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">44. Які переваги batching?</div>
+    <div class="qa-a">Оптимізація операцій вводу/виводу, роботи з базою даних чи зовнішніми API.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">45. Що таке lazy pipeline?</div>
+    <div class="qa-a">Ланцюжок генераторів, де кожен етап обробляє елементи по одному в міру потреби наступного етапу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">46. Які stages може містити pipeline?</div>
+    <div class="qa-a">Джерело (source), парсер, валідатор, фільтр, трансформатор, пакетувальник, агрегатор (sink).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">47. Що є source у streaming pipeline?</div>
+    <div class="qa-a">Первинне джерело потоку (файл, мережевий сокет, нескінченний генератор).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">48. Що є transformation?</div>
+    <div class="qa-a">Проміжний генератор, який змінює формат чи поля кожного окремого запису.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">49. Що є sink?</div>
+    <div class="qa-a">Кінцевий споживач потоку, який матеріалізує дані, записує їх або рахує агрегати (sum, count).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">50. Чи гарантує generator менший total execution time?</div>
+    <div class="qa-a">Ні, часто генератор трохи повільніший через накладні витрати на виклики next() та перемикання фреймів стека.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">51. Яка основна memory advantage generator?</div>
+    <div class="qa-a">Константна пікова пам'ять O(1), незалежна від загального обсягу оброблюваного датасету.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">52. Що таке time to first result?</div>
+    <div class="qa-a">Час від запуску програми до отримання найпершого обробленого елемента споживачем.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">53. Чому lazy pipeline добре підтримує early termination?</div>
+    <div class="qa-a">Тому що обчислення можна перервати в будь-який момент, не витрачаючи час на читання решти файлу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">54. Чому exception у generator може виникати із затримкою?</div>
+    <div class="qa-a">Оскільки код генератора не виконується доти, доки споживач не дійде до рядка з помилкою через виклик next().</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">55. Чому list(generator) може бути проблемою?</div>
+    <div class="qa-a">Це матеріалізує весь потік у списку, повністю нівелюючи перевагу генератора в економії оперативної пам'яті.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">56. Що трапиться при list(count())?</div>
+    <div class="qa-a">Нескінченний цикл, зависання програми та падіння через переповнення пам'яті (MemoryError).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">57. Як generator може впливати на lifecycle file resource?</div>
+    <div class="qa-a">Якщо генератор не вичерпано або не закрито явно, контекстний менеджер with залишає файл відкритим довше, ніж очікувалося.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">58. Як тестувати невеликий generator?</div>
+    <div class="qa-a">Перетворити його на список list(gen) і порівняти з очікуваними даними через assert.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">59. Як тестувати infinite generator?</div>
+    <div class="qa-a">За допомогою itertools.islice(gen, N) обмежити кількість елементів фіксованим числом N.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">60. Коли краще використовувати list, а коли generator?</div>
+    <div class="qa-a">List кращий для багаторазового використання, сортування та індексації невеликих обсягів даних. Generator незамінний для великих файлів, потоків та економії пам'яті.</div>
+</div>
+
+<!-- 28. ВИСНОВОК -->
+<div class="page-break"></div>
+<h2>28. Висновок</h2>
+<p>Під час виконання лабораторної роботи №3 було успішно опановано ітераційну модель Python, принципи відкладених обчислень та побудову високоефективних потокових конвеєрів:</p>
+<ol>
+    <li><strong>Ітератори та протокол:</strong> створено власний клас ітератора <code>SportsRangeIterator</code> та контейнера <code>SportsRange</code>, що закріпило розуміння взаємодії <code>__iter__()</code>, <code>__next__()</code> та винятку <code>StopIteration</code>.</li>
+    <li><strong>Генераторний конвеєр:</strong> розроблено лінивий конвеєр обробки спортивних результатів за варіантом №9, що включає фази читання (<code>read_lines</code>), парсингу, валідації (<code>validate_records</code>), лінивої фільтрації, нормалізації та пакетування (<code>batching</code>).</li>
+    <li><strong>Модуль itertools:</strong> ефективно застосовано інструменти <code>islice</code> (зріз без матеріалізації), <code>pairwise</code> (попарний аналіз різниць результатів) та <code>chain</code> (об'єднання потоків).</li>
+    <li><strong>Порівняльний аналіз пам'яті та часу:</strong> практичні вимірювання на вибірках до 500 000 записів продемонстрували колосальну перевагу lazy-підходу за піковою пам'яттю (економія у <strong>3484 рази</strong> на 500k рядках: 0.07 МБ проти 243.9 МБ). Водночас підтверджено, що lazy-підхід забезпечує практично миттєве повернення першого результату (0.0003 с проти 5.9 с).</li>
+</ol>
+<p>Отримані знання дозволяють будувати промислові масштабовані системи аналізу даних, що працюють з великими файлами в умовах обмежених ресурсів оперативної пам'яті.</p>
+
+</body>
+</html>

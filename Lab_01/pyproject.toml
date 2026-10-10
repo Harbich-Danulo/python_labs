@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sports-tracker"
+version = "0.1.0"
+description = "Sports results tracking system - Laboratory work 1 for Professional Python"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Danylo Harbiсh" }
+]
+keywords = ["sports", "tracker", "python", "laboratory"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+sports-tracker = "sports_tracker.main:main"

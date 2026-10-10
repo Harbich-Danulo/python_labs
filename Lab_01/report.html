@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Звіт з лабораторної роботи №1 - Гарбіч Данило</title>
+<style>
+    @page {
+        size: A4;
+        margin: 20mm 15mm 20mm 20mm;
+    }
+    
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12.5pt;
+        line-height: 1.35;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-break {
+        page-break-after: always;
+        break-after: page;
+    }
+
+    /* Title Page */
+    .title-page {
+        height: 94vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 20px 0;
+    }
+    .tp-header {
+        font-size: 13.5pt;
+        font-weight: bold;
+        line-height: 1.3;
+        text-transform: uppercase;
+        text-align: center;
+        color: #000;
+    }
+    .tp-subheader {
+        font-size: 12pt;
+        margin-top: 6px;
+        color: #111;
+        text-align: center;
+        text-transform: none;
+    }
+    .tp-body {
+        margin: auto 0;
+        text-align: center;
+    }
+    .tp-title-main {
+        font-size: 26pt;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+    .tp-title-sub {
+        font-size: 14pt;
+        font-weight: normal;
+        color: #111;
+        margin-bottom: 14px;
+    }
+    .tp-title-theme {
+        font-size: 18pt;
+        font-weight: bold;
+        color: #000;
+        line-height: 1.3;
+        padding: 0 40px;
+    }
+    .tp-sign {
+        width: 100%;
+        text-align: right;
+        font-size: 12.5pt;
+        line-height: 1.45;
+        margin-bottom: 40px;
+        padding-right: 10px;
+    }
+    .tp-footer {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Content styling */
+    h2 {
+        font-size: 14pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    h3 {
+        font-size: 12.5pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    p {
+        text-align: justify;
+        margin-top: 4px;
+        margin-bottom: 8px;
+        text-indent: 1.25cm;
+    }
+    .no-indent {
+        text-indent: 0;
+    }
+    ul, ol {
+        margin-top: 4px;
+        margin-bottom: 8px;
+        padding-left: 2.2cm;
+    }
+    li {
+        margin-bottom: 4px;
+        text-align: justify;
+    }
+
+    /* Code & Terminal Blocks */
+    pre, code {
+        font-family: 'Consolas', 'Courier New', monospace;
+    }
+    pre {
+        background-color: #f8f9fa;
+        border: 1px solid #d0d7de;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 9.5pt;
+        line-height: 1.25;
+        overflow-x: auto;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+    }
+    .terminal-box {
+        background-color: #1a202c;
+        color: #e2e8f0;
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        line-height: 1.25;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 10.5pt;
+        page-break-inside: avoid;
+    }
+    th, td {
+        border: 1px solid #a0aec0;
+        padding: 5px 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #edf2f7;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Q&A Section */
+    .qa-item {
+        margin-bottom: 12px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    .qa-q {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 2px;
+    }
+    .qa-a {
+        text-indent: 1.25cm;
+        text-align: justify;
+        margin-top: 0;
+    }
+</style>
+</head>
+<body>
+
+<!-- 1. ТИТУЛЬНА СТОРІНКА -->
+<div class="title-page page-break">
+    <div class="tp-header">
+        Міністерство освіти і науки України<br>
+        Львівський національний університет імені Івана Франка<br>
+        <div class="tp-subheader">Факультет електроніки та комп'ютерних технологій<br>Кафедра системного проектування</div>
+    </div>
+
+    <div class="tp-body">
+        <div class="tp-title-main">ЗВІТ</div>
+        <div class="tp-title-sub">про виконання лабораторної роботи №1<br>з курсу «Професійний Python»</div>
+        <div class="tp-title-theme">«Організація професійного Python-проєкту та Git»</div>
+    </div>
+
+    <div class="tp-sign">
+        Виконав:<br>
+        студент 3 курсу, групи ФЕП-31с<br>
+        Гарбіч Данило<br><br>
+        Перевірив:<br>
+        професор<br>
+        Свелеба Сергій Андрійович
+    </div>
+
+    <div class="tp-footer">
+        Львів — 2026
+    </div>
+</div>
+
+<!-- 2. НОМЕР І ТЕМА -->
+<h2>2. Номер і тема лабораторної роботи</h2>
+<p class="no-indent"><strong>Лабораторна робота №1.</strong> «Організація професійного Python-проєкту та Git».</p>
+
+<!-- 3. МЕТА РОБОТИ -->
+<h2>3. Мета роботи</h2>
+<p>Ознайомитися з основними принципами організації професійного Python-проєкту, навчитися створювати ізольоване середовище розробки, формувати структуру проєкту за принципом <code>src-layout</code>, працювати з модулями та пакетами Python, створювати файл <code>pyproject.toml</code>, використовувати Git для контролю версій та оформлювати базову документацію проєкту.</p>
+
+<!-- 4. ІНДИВІДУАЛЬНИЙ ВАРІАНТ -->
+<h2>4. Номер індивідуального варіанта</h2>
+<p class="no-indent"><strong>Варіант №9:</strong> «Облік спортивних результатів».</p>
+
+<!-- 5. ПОСТАНОВКА ЗАДАЧІ -->
+<h2>5. Постановка задачі</h2>
+<p>Розробити консольний Python-застосунок для обліку, фільтрації та статистичного аналізу результатів спортивних змагань відповідно до індивідуального варіанта №9.</p>
+
+<h3>5.1. Вимоги до сутності спортсмена:</h3>
+<ul>
+    <li><strong>ім'я</strong> (<code>name: str</code>) — ім'я та прізвище спортсмена;</li>
+    <li><strong>вид спорту</strong> (<code>sport: str</code>) — спортивна дисципліна;</li>
+    <li><strong>результат</strong> (<code>result: float</code>) — кількісний показник (бали, секунди, метри тощо);</li>
+    <li><strong>категорія</strong> (<code>category: str</code>) — вікова або кваліфікаційна група («Дорослі», «Юніори», «Майстри»).</li>
+</ul>
+
+<h3>5.2. Вимоги до бізнес-логіки:</h3>
+<ul>
+    <li>додавання нового результату до колекції;</li>
+    <li>пошук результатів за видом спорту;</li>
+    <li>визначення найкращого результату (за видом спорту або серед усіх);</li>
+    <li>обчислення середнього значення результатів;</li>
+    <li>формування впорядкованого рейтингу спортсменів.</li>
+</ul>
+
+<h3>5.3. Загальні та підвищені вимоги до реалізації:</h3>
+<ul>
+    <li>Організація структури коду за принципом <code>src-layout</code>;</li>
+    <li>Опис сутності через <code>@dataclass</code> із валідацією полів та власним класом винятку <code>InvalidAthleteDataError</code>;</li>
+    <li>Розподіл логіки на окремі модулі: <code>models.py</code>, <code>services.py</code>, <code>main.py</code>;</li>
+    <li>Повне покриття анотаціями типів (<code>type hints</code>);</li>
+    <li>Точка входу із захистом через <code>if __name__ == "__main__":</code>;</li>
+    <li>Стандартизований конфігураційний файл <code>pyproject.toml</code> (PEP 621) із підтримкою <code>pip install -e .</code>;</li>
+    <li>Наявність файлів <code>.gitignore</code>, <code>README.md</code> та автоматизованих тестів у каталозі <code>tests/</code>;</li>
+    <li>Фіксація етапів розробки в Git за допомогою логічних атомарних комітів;</li>
+    <li>Зручний інтерфейс користувача: консольне інтерактивне меню (<code>menu-driven interface</code>), захищене введення з клавіатури, пошук за декількома критеріями одночасно та розрахунок статистики.</li>
+</ul>
+
+<!-- 6. СТРУКТУРА ПРОЄКТУ -->
+<h2>6. Структура проєкту</h2>
+<p class="no-indent">Проєкт побудовано за принципом <code>src-layout</code>:</p>
+<pre>
+lab1/
+├── .gitignore                      # Шаблони файлів, які ігноруються системою Git
+├── pyproject.toml                  # Стандартна конфігурація проєкту та збирання (PEP 621)
+├── README.md                       # Технічна документація та інструкція користувача
+├── REPORT.md                       # Повний текст звіту про виконання роботи
+│
+├── src/                            # Директорія вихідного коду (src-layout)
+│   └── sports_tracker/             # Головний пакет програми
+│       ├── __init__.py             # Ініціалізація пакета, константа версії (__version__)
+│       ├── models.py               # Модель даних Athlete (@dataclass), винятки валідації
+│       ├── services.py             # Чиста бізнес-логіка (обчислення, фільтри, рейтинг)
+│       └── main.py                 # Точка входу, консольне меню, валідоване введення
+│
+└── tests/                          # Каталог автоматизованих тестів
+    └── test_services.py            # Модульні тести функцій бізнес-логіки
+</pre>
+
+<!-- 7. ОПИС СТВОРЕНИХ МОДУЛІВ -->
+<h2>7. Опис створених модулів</h2>
+<ol>
+    <li><strong><code>src/sports_tracker/__init__.py</code></strong> — ініціалізує пакет, містить документаційний рядок та публічну версію програми <code>__version__ = "0.1.0"</code>.</li>
+    <li><strong><code>src/sports_tracker/models.py</code></strong> — містить визначення винятку <code>InvalidAthleteDataError(ValueError)</code> та модель даних <code>Athlete</code> на базі <code>@dataclass</code>. Реалізує перевірку непорожності полів та невід'ємності результату в методі <code>__post_init__</code>, а також форматоване представлення через <code>display_info</code>.</li>
+    <li><strong><code>src/sports_tracker/services.py</code></strong> — модуль чистої предметної логіки без операцій введення/виведення:
+        <ul>
+            <li><code>add_result</code> — додавання спортсмена до списку;</li>
+            <li><code>filter_by_sport</code> — фільтрація записів за видом спорту (case-insensitive);</li>
+            <li><code>filter_by_multiple_criteria</code> — пошук одночасно за спортом і категорією;</li>
+            <li><code>find_best_result</code> — пошук лідера (максимальний або мінімальний показник);</li>
+            <li><code>calculate_average_result</code> — розрахунок середнього значення з округленням;</li>
+            <li><code>generate_ranking</code> — сортування колекції спортсменів за результатом;</li>
+            <li><code>calculate_statistics</code> — розрахунок зведених показників (count, avg, min, max).</li>
+        </ul>
+    </li>
+    <li><strong><code>src/sports_tracker/main.py</code></strong> — модуль взаємодії з користувачем: реалізує функції безпечного введення з клавіатури (<code>prompt_non_empty_string</code>, <code>prompt_positive_float</code>), консольне меню (пункти 0–7), демонстраційні дані та автоматичний режим <code>--demo</code>.</li>
+    <li><strong><code>tests/test_services.py</code></strong> — автоматизовані модульні тести для перевірки всіх функцій сервісів та валідації в моделях.</li>
+</ol>
+
+<!-- 8. ТЕКСТ ОСНОВНИХ ФРАГМЕНТІВ КОДУ -->
+<div class="page-break"></div>
+<h2>8. Текст основних фрагментів коду</h2>
+
+<h3>8.1. Модуль моделей даних: <code>src/sports_tracker/models.py</code></h3>
+<pre>
+from dataclasses import dataclass
+
+class InvalidAthleteDataError(ValueError):
+    """Raised when athlete data fails validation."""
+    pass
+
+@dataclass
+class Athlete:
+    """Represents an athlete and their performance result."""
+    name: str
+    sport: str
+    result: float
+    category: str
+
+    def __post_init__(self) -> None:
+        self.name = self.name.strip()
+        self.sport = self.sport.strip()
+        self.category = self.category.strip()
+
+        if not self.name:
+            raise InvalidAthleteDataError("Athlete name cannot be empty.")
+        if not self.sport:
+            raise InvalidAthleteDataError("Sport name cannot be empty.")
+        if not self.category:
+            raise InvalidAthleteDataError("Category cannot be empty.")
+        if self.result &lt; 0:
+            raise InvalidAthleteDataError(
+                f"Result cannot be negative. Received: {self.result}"
+            )
+
+    @property
+    def display_info(self) -> str:
+        return f"{self.name} | {self.sport} | {self.result:.2f} | {self.category}"
+</pre>
+
+<h3>8.2. Модуль бізнес-логіки: <code>src/sports_tracker/services.py</code></h3>
+<pre>
+from sports_tracker.models import Athlete
+
+DEFAULT_PRECISION: int = 2
+
+def add_result(athletes: list[Athlete], athlete: Athlete) -> None:
+    athletes.append(athlete)
+
+def filter_by_sport(athletes: list[Athlete], sport: str) -> list[Athlete]:
+    target = sport.strip().lower()
+    return [a for a in athletes if a.sport.lower() == target]
+
+def filter_by_multiple_criteria(
+    athletes: list[Athlete],
+    sport: str | None = None,
+    category: str | None = None,
+) -> list[Athlete]:
+    result = athletes
+    if sport is not None and sport.strip():
+        target_sport = sport.strip().lower()
+        result = [a for a in result if a.sport.lower() == target_sport]
+    if category is not None and category.strip():
+        target_category = category.strip().lower()
+        result = [a for a in result if a.category.lower() == target_category]
+    return result
+
+def find_best_result(
+    athletes: list[Athlete],
+    sport: str | None = None,
+    higher_is_better: bool = True,
+) -> Athlete | None:
+    candidates = filter_by_sport(athletes, sport) if sport else athletes
+    if not candidates:
+        return None
+    return max(candidates, key=lambda a: a.result) if higher_is_better else min(candidates, key=lambda a: a.result)
+
+def calculate_average_result(
+    athletes: list[Athlete],
+    sport: str | None = None,
+) -> float:
+    candidates = filter_by_sport(athletes, sport) if sport else athletes
+    if not candidates:
+        return 0.0
+    return round(sum(a.result for a in candidates) / len(candidates), DEFAULT_PRECISION)
+
+def generate_ranking(
+    athletes: list[Athlete],
+    sport: str | None = None,
+    descending: bool = True,
+) -> list[Athlete]:
+    candidates = filter_by_sport(athletes, sport) if sport else athletes
+    return sorted(candidates, key=lambda a: a.result, reverse=descending)
+
+def calculate_statistics(
+    athletes: list[Athlete],
+    sport: str | None = None,
+) -> dict[str, float | int]:
+    candidates = filter_by_sport(athletes, sport) if sport else athletes
+    if not candidates:
+        return {"count": 0, "average": 0.0, "min_result": 0.0, "max_result": 0.0}
+    results = [a.result for a in candidates]
+    return {
+        "count": len(candidates),
+        "average": round(sum(results) / len(results), DEFAULT_PRECISION),
+        "min_result": min(results),
+        "max_result": max(results),
+    }
+</pre>
+
+<h3>8.3. Головний модуль застосунку: <code>src/sports_tracker/main.py</code> (фрагмент)</h3>
+<pre>
+def print_menu() -> None:
+    print("\n" + "=" * 50)
+    print("      СИСТЕМА ОБЛІКУ СПОРТИВНИХ РЕЗУЛЬТАТІВ       ")
+    print("=" * 50)
+    print("1. Показати всі спортивні результати")
+    print("2. Додати новий результат (введення з клавіатури)")
+    print("3. Пошук результатів за видом спорту")
+    print("4. Пошук за декількома критеріями (спорт + категорія)")
+    print("5. Визначити найкращий результат")
+    print("6. Розрахувати середній результат та статистику")
+    print("7. Сформувати рейтинг спортсменів")
+    print("0. Вихід із програми")
+    print("=" * 50)
+
+def run_menu(athletes: list[Athlete]) -> None:
+    while True:
+        print_menu()
+        choice = input("Оберіть пункт меню (0-7): ").strip()
+        if choice == "1":
+            print_athletes(athletes, "Усі зареєстровані результати")
+        elif choice == "2":
+            handle_add_athlete(athletes)
+        elif choice == "3":
+            handle_filter_by_sport(athletes)
+        elif choice == "4":
+            handle_multi_search(athletes)
+        elif choice == "5":
+            handle_best_result(athletes)
+        elif choice == "6":
+            handle_statistics(athletes)
+        elif choice == "7":
+            handle_ranking(athletes)
+        elif choice == "0":
+            print("\nДякуємо за використання програми. До побачення!")
+            break
+
+def main() -> None:
+    athletes = create_demo_athletes()
+    if len(sys.argv) > 1 and sys.argv[1] == "--demo":
+        run_demo_scenario(athletes)
+        return
+    run_menu(athletes)
+
+if __name__ == "__main__":
+    main()
+</pre>
+
+<!-- 9. ПОЯСНЕННЯ PYPROJECT.TOML -->
+<h2>9. Пояснення <code>pyproject.toml</code></h2>
+<p>Файл <code>pyproject.toml</code> є уніфікованим декларативним стандартом для керування конфігурацією та процесом побудови Python-пакетів (специфікації PEP 517, PEP 518 та PEP 621).</p>
+<pre>
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sports-tracker"
+version = "0.1.0"
+description = "Sports results tracking system - Laboratory work 1 for Professional Python"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Danylo Harbiсh" }
+]
+keywords = ["sports", "tracker", "python", "laboratory"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.scripts]
+sports-tracker = "sports_tracker.main:main"
+</pre>
+<p><strong>Детальний опис компонентів:</strong></p>
+<ul>
+    <li><strong><code>[build-system]</code></strong> — задає інструменти, необхідні для білду проєкту (<code>setuptools>=70</code>) та бекенд-інтерфейс (<code>setuptools.build_meta</code>), що дозволяє менеджеру <code>pip</code> зібрати wheel-пакет.</li>
+    <li><strong><code>[project]</code></strong> — містить метадані: унікальне ім'я дистрибутива (<code>sports-tracker</code>), початкову версію (<code>0.1.0</code>), файл документації (<code>README.md</code>), версійні обмеження інтерпретатора (<code>>=3.11</code>) та дані автора.</li>
+    <li><strong><code>[project.scripts]</code></strong> — створює виконувану команду консолі <code>sports-tracker</code>, що викликає <code>sports_tracker.main:main</code>. Завдяки цьому після інсталяції через <code>pip install -e .</code> користувач може запускати застосунок простою командою <code>sports-tracker</code> з будь-якого місця.</li>
+</ul>
+
+<!-- 10. ВМІСТ .GITIGNORE -->
+<h2>10. Вміст <code>.gitignore</code></h2>
+<pre>
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE and editor settings
+.idea/
+.vscode/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+
+# Environment variables
+.env
+</pre>
+<p><strong>Пояснення:</strong> файл запобігає потраплянню до репозиторію кешів компілятора (<code>__pycache__</code>), платформозалежного віртуального оточення (<code>.venv/</code>), індивідуальних налаштувань IDE розробника (<code>.vscode/</code>, <code>.idea/</code>) та тимчасових каталогів дистрибуції.</p>
+
+<!-- 11. ФРАГМЕНТ README -->
+<h2>11. Фрагмент <code>README.md</code></h2>
+<pre>
+# Sports Tracker (Облік спортивних результатів)
+Навчальний проєкт з дисципліни «Професійний Python» (Лабораторна робота №1).
+Індивідуальний варіант №9: «Облік спортивних результатів».
+
+## Встановлення
+1. python -m venv .venv
+2. .venv\\Scripts\\activate (Windows) або source .venv/bin/activate (Linux/macOS)
+3. python -m pip install -e .
+
+## Запуск
+- Через модуль: python -m sports_tracker.main
+- Через команду: sports-tracker
+- Демонстраційний режим: sports-tracker --demo
+- Тести: python tests/test_services.py
+</pre>
+
+<!-- 12. SCREENSHOTS ЗАПУСКУ -->
+<div class="page-break"></div>
+<h2>12. Скріншоти та результати запуску застосунку</h2>
+
+<h3>12.1. Головне меню програми (інтерактивний режим)</h3>
+<div class="terminal-box">Ласкаво просимо до Системи обліку спортивних результатів!
+Лабораторна робота №1 з дисципліни 'Професійний Python'.
+
+==================================================
+      СИСТЕМА ОБЛІКУ СПОРТИВНИХ РЕЗУЛЬТАТІВ       
+==================================================
+1. Показати всі спортивні результати
+2. Додати новий результат (введення з клавіатури)
+3. Пошук результатів за видом спорту
+4. Пошук за декількома критеріями (спорт + категорія)
+5. Визначити найкращий результат
+6. Розрахувати середній результат та статистику
+7. Сформувати рейтинг спортсменів
+0. Вихід із програми
+==================================================
+Оберіть пункт меню (0-7): </div>
+
+<h3>12.2. Відображення таблиці спортсменів (Пункт 1)</h3>
+<div class="terminal-box">=== Усі зареєстровані результати ===
+------------------------------------------------------------------------------------
+№    | Ім'я спортсмена          | Вид спорту             | Результат  | Категорія   
+------------------------------------------------------------------------------------
+1    | Ярослава Магучіх         | Стрибки у висоту       | 2.10       | Дорослі     
+2    | Ірина Геращенко          | Стрибки у висоту       | 2.00       | Дорослі     
+3    | Юлія Левченко            | Стрибки у висоту       | 1.95       | Дорослі     
+4    | Олег Верняєв             | Спортивна гімнастика   | 15.30      | Майстри     
+5    | Ілля Ковтун              | Спортивна гімнастика   | 15.65      | Юніори      
+6    | Михайло Романчук         | Плавання               | 880.20     | Дорослі     
+7    | Олександр Желтяков       | Плавання               | 895.10     | Юніори      
+------------------------------------------------------------------------------------</div>
+
+<h3>12.3. Додавання результату з клавіатури з валідацією (Пункт 2)</h3>
+<div class="terminal-box">--- Додавання нового спортивного результату ---
+Введіть ім'я та прізвище спортсмена: Марина Бех-Романчук
+Введіть вид спорту: Стрибки у довжину
+Введіть числовий результат (очки / метри / бали / секунди): 6.93
+Введіть категорію (напр. Дорослі, Юніори, Майстри): Дорослі
+Успішно додано: Марина Бех-Романчук (Стрибки у довжину)!</div>
+
+<h3>12.4. Пошук результатів за видом спорту (Пункт 3)</h3>
+<div class="terminal-box">Введіть вид спорту для пошуку: Стрибки у висоту
+
+=== Результати за видом спорту: 'Стрибки у висоту' ===
+------------------------------------------------------------------------------------
+№    | Ім'я спортсмена          | Вид спорту             | Результат  | Категорія   
+------------------------------------------------------------------------------------
+1    | Ярослава Магучіх         | Стрибки у висоту       | 2.10       | Дорослі     
+2    | Ірина Геращенко          | Стрибки у висоту       | 2.00       | Дорослі     
+3    | Юлія Левченко            | Стрибки у висоту       | 1.95       | Дорослі     
+------------------------------------------------------------------------------------</div>
+
+<h3>12.5. Визначення найкращого результату (Пункт 5)</h3>
+<div class="terminal-box">Введіть вид спорту (або натисніть Enter для пошуку серед усіх): Стрибки у висоту
+
+Найкращий результат у спорті 'Стрибки у висоту':
+  Спортсмен: Ярослава Магучіх
+  Вид спорту: Стрибки у висоту
+  Результат:  2.10
+  Категорія:  Дорослі</div>
+
+<h3>12.6. Розрахунок середнього результату та статистики (Пункт 6)</h3>
+<div class="terminal-box">Введіть вид спорту (або Enter для загальної статистики): Стрибки у висоту
+
+Статистичні показники (для спорту 'Стрибки у висоту'):
+  Кількість учасників: 3
+  Середній результат:  2.02
+  Мінімальний показник: 1.95
+  Максимальний показник: 2.10</div>
+
+<h3>12.7. Формування та сортування рейтингу (Пункт 7)</h3>
+<div class="terminal-box">Введіть вид спорту для рейтингу (або Enter для загального): Стрибки у висоту
+
+=== Рейтинг спортсменів (Стрибки у висоту) ===
+------------------------------------------------------------------------------------
+№    | Ім'я спортсмена          | Вид спорту             | Результат  | Категорія   
+------------------------------------------------------------------------------------
+1    | Ярослава Магучіх         | Стрибки у висоту       | 2.10       | Дорослі     
+2    | Ірина Геращенко          | Стрибки у висоту       | 2.00       | Дорослі     
+3    | Юлія Левченко            | Стрибки у висоту       | 1.95       | Дорослі     
+------------------------------------------------------------------------------------</div>
+
+<!-- 13. РЕЗУЛЬТАТ GIT STATUS -->
+<h2>13. Результат виконання команди <code>git status</code></h2>
+<div class="terminal-box">$ git status
+On branch main
+nothing to commit, working tree clean</div>
+
+<!-- 14. РЕЗУЛЬТАТ GIT LOG -->
+<h2>14. Результат виконання команди <code>git log --oneline</code></h2>
+<div class="terminal-box">$ git log --oneline
+ad1ebbc Finalize laboratory report
+28fd2c9 Add laboratory report documentation
+0f967d1 Add application entry point and documentation
+8d36b71 Add athlete model and business logic
+1603aea Create project structure</div>
+
+<!-- 15. ВІДПОВІДІ НА КОНТРОЛЬНІ ЗАПИТАННЯ -->
+<div class="page-break"></div>
+<h2>15. Відповіді на контрольні запитання</h2>
+
+<div class="qa-item">
+    <div class="qa-q">1. Що таке Python-проєкт?</div>
+    <div class="qa-a">Python-проєкт — це організована сукупність файлів вихідного коду, пакетів, конфігураційних файлів, документації, автоматизованих тестів та списку залежностей, що об'єднані для вирішення конкретної задачі як самостійна програмна система чи бібліотека.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">2. Чим проєкт відрізняється від одного Python script?</div>
+    <div class="qa-a">Скрипт — це один автономний .py-файл з лінійними інструкціями для локального виконання. Проєкт має модульну архітектуру, систему керування залежностями, ізольоване оточення (.venv), стандартну систему збірки (pyproject.toml), контроль версій (Git) та можливість пакування й поширення через інструменти на кшталт pip.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">3. Що таке Python module?</div>
+    <div class="qa-a">Python-модуль — це файл із розширенням .py, який містить визначення функцій, класів або змінних і призначений для повторного використання в інших модулях через механізм імпортування (import).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">4. Що таке Python package?</div>
+    <div class="qa-a">Python-пакет — це каталог, що містить один або більше модулів (або вкладених пакетів) та службовий файл __init__.py, який забезпечує ієрархічне структурування простору імен.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">5. Для чого потрібний __init__.py?</div>
+    <div class="qa-a">Файл __init__.py сигналізує інтерпретатору Python, що даний каталог є пакетом. Він виконується під час імпорту пакета і дозволяє задавати версію (__version__), налаштовувати скорочені імпорти та керувати публічним інтерфейсом через список __all__.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">6. Що таке src-layout?</div>
+    <div class="qa-a">src-layout — це стандарт структури проєкту, за якого весь вихідний програмний код розташовується у спеціальній піддиректорії src/ (наприклад, src/sports_tracker/), а не безпосередньо в корені репозиторію поруч із конфігураційними файлами.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">7. Які переваги має src-layout?</div>
+    <div class="qa-a">Головна перевага — унеможливлення випадкового імпортування локального незібраного коду при тестуванні. Тести запускаються проти встановленого у віртуальне середовище пакета, що відтворює реальні умови кінцевого користувача. Також це запобігає появі зайвих артефактів (__pycache__) у кореневій папці проєкту.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">8. Для чого використовується virtual environment?</div>
+    <div class="qa-a">Віртуальне середовище забезпечує ізоляцію бібліотек та їхніх версій для конкретного проєкту. Воно гарантує, що встановлення чи оновлення пакетів в одному проєкті не порушить працездатність інших проєктів або системного інтерпретатора Python.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">9. Як створити .venv?</div>
+    <div class="qa-a">За допомогою стандартного вбудованого модуля venv: <code>python -m venv .venv</code>.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">10. Як активувати virtual environment?</div>
+    <div class="qa-a">У Windows (PowerShell): <code>.venv\Scripts\activate</code>; у Windows (CMD): <code>.venv\Scripts\activate.bat</code>; у Linux/macOS: <code>source .venv/bin/activate</code>.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">11. Для чого використовується pip?</div>
+    <div class="qa-a">pip — це стандартний менеджер пакетів для Python, призначений для встановлення, оновлення, видалення та інспектування сторонніх бібліотек з репозиторію PyPI або локальних дистрибутивів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">12. Чому рекомендується python -m pip?</div>
+    <div class="qa-a">Виклик python -m pip явно запускає модуль pip, асоційований саме з поточним активним інтерпретатором python. Це виключає ризик звернення до глобального системного pip або іншої версії Python, прописаної у системній змінній PATH.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">13. Для чого потрібний pyproject.toml?</div>
+    <div class="qa-a">pyproject.toml — це єдиний сучасний декларативний конфігураційний файл проєкту (PEP 517, 518, 621), що визначає систему збирання, метадані (назву, версію, автора, ліцензію, залежності) та параметри лінтерів, форматтерів і тестових фреймворків.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">14. Що містить секція [project]?</div>
+    <div class="qa-a">Секція [project] стандартизує метадані пакета: назву (name), версію (version), короткий опис (description), файл опису (readme), сумісні версії Python (requires-python), список залежностей (dependencies), а також точки входу для консольних команд ([project.scripts]).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">15. Що таке editable installation?</div>
+    <div class="qa-a">Встановлення в режимі редагування (pip install -e . або --editable). Замість копіювання файлів до site-packages, у віртуальному середовищі створюється посилання на робочий каталог src/. Будь-які зміни у коді відразу стають доступними без повторного виконання інсталяції.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">16. Для чого використовується if __name__ == "__main__":?</div>
+    <div class="qa-a">Конструкція перевіряє, чи файл запущено як основну програму (__name__ == "__main__"), чи він імпортований як модуль іншим скриптом. Це дозволяє уникнути автоматичного виконання виконуваного коду або запуску консольного інтерфейсу під час імпорту функцій для тестування.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">17. Що таке Git?</div>
+    <div class="qa-a">Git — це розподілена система керування версіями файлів, яка фіксує історію змін проєкту, дає змогу повертатися до будь-якого попереднього стану коду, вести розробку в окремих гілках та ефективно співпрацювати над кодом у команді.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">18. Що таке repository?</div>
+    <div class="qa-a">Репозиторій — це спеціальне сховище Git (каталог .git), де зберігається повна історія комітів, гілок, тегів, конфігурацій та метаданих, що описують усі зміни проєкту.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">19. Що таке commit?</div>
+    <div class="qa-a">Коміт — це збережений у базі даних Git моментальний знімок (снапшот) стану проіндексованих файлів проєкту в певний момент часу. Кожен коміт має унікальний хеш-ідентифікатор, дату, автора та змістовне повідомлення про внесені зміни.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">20. Для чого використовується git status?</div>
+    <div class="qa-a">Команда git status відображає поточний стан робочого каталогу та індексу (staging area): які файли модифіковано, які підготовлено до коміту, а які не відстежуються системою контролю версій.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">21. Для чого git add?</div>
+    <div class="qa-a">Команда git add додає вказані файли чи зміни з робочої директорії до області індексації (staging area), формуючи набір змін для наступного коміту.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">22. Для чого git commit?</div>
+    <div class="qa-a">Команда git commit остаточно записує підготовлені в індексі зміни до історії репозиторію, створюючи новий коміт із зазначеним повідомленням (-m).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">23. Що показує git log?</div>
+    <div class="qa-a">Команда git log виводить хронологічну історію комітів поточної гілки. Прапорець --oneline дозволяє переглядати історію у компактному однорядковому форматі: скорочений хеш і тема повідомлення.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">24. Для чого потрібен .gitignore?</div>
+    <div class="qa-a">Файл .gitignore містить шаблони імен файлів та директорій, які Git повинен ігнорувати. Це запобігає потраплянню до репозиторію кешів, бінарних файлів, конфіденційних даних (.env), файлів середовищ (.venv/) та службових каталогів IDE.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">25. Чому .venv не потрібно комітити?</div>
+    <div class="qa-a">Каталог .venv містить велику кількість платформозалежних бінарних файлів і бібліотек, прив'язаних до конкретної операційної системи та шляхів на диску комп'ютера розробника. На іншій машині таке середовище не працюватиме. Замість коміту .venv у репозиторій додають декларативні файли залежностей (pyproject.toml), що дозволяє відтворити оточення з нуля на будь-якій ОС.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">26. Для чого потрібний README?</div>
+    <div class="qa-a">README.md — це основний документ проєкту, який знайомить розробників і користувачів із його призначенням, архітектурою, системними вимогами, інструкціями зі встановлення, запуску, тестування та прикладами використання.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">27. Що таке type hints?</div>
+    <div class="qa-a">Анотації типів (type hints) — синтаксичний механізм мови Python (PEP 484), що дозволяє вказувати очікувані типи аргументів функцій, типів повернення та атрибутів. Вони полегшують читання коду, покращують автодоповнення в IDE та дозволяють виконувати статичний аналіз коду інструментами на зразок mypy.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">28. Для чого програму розділяють на modules?</div>
+    <div class="qa-a">Розділення програми на модулі забезпечує принцип слабкої зв'язаності (low coupling) та високої функціональної цілісності (high cohesion). Модульність спрощує навігацію кодовою базою, полегшує внесення змін, усуває дублювання коду та дозволяє ізольовано тестувати окремі підсистеми.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">29. Що таке business logic?</div>
+    <div class="qa-a">Бізнес-логіка (business logic) — це ядро застосунку, яке інкапсулює правила обробки даних, розрахунки, алгоритми фільтрації та обмеження предметної області, залишаючись абсолютно незалежним від користувацького інтерфейсу чи джерел збереження даних.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">30. Чому потрібно відокремлювати application entry point від business logic?</div>
+    <div class="qa-a">Відокремлення точки входу (UI/CLI/API) від бізнес-логіки реалізує архітектурний принцип єдиної відповідальності (Single Responsibility Principle). Завдяки цьому функції логіки стають детермінованими («чистими»), їх легко тестувати автоматичними тестами без імітації консольного вводу (input()), а також це дає змогу змінити інтерфейс програми (наприклад, створити web-версію чи REST API) без модифікації обчислювального ядра.</div>
+</div>
+
+<!-- 16. ВИСНОВОК -->
+<div class="page-break"></div>
+<h2>16. Висновок</h2>
+<p>Під час виконання лабораторної роботи №1 було детально опановано та практично закріплено стандарти сучасної розробки професійних Python-проєктів:</p>
+<ol>
+    <li><strong>Архітектура та структура:</strong> успішно реалізовано стандартну структуру <code>src-layout</code>, що ізолює вихідний код пакету <code>sports_tracker</code> від допоміжних конфігураційних файлів і тестів.</li>
+    <li><strong>Модульний дизайн:</strong> програмну систему розподілено на три основні компоненти:
+        <ul>
+            <li>модель даних на базі <code>@dataclass</code> із вбудованою валідацією та власним класом винятку <code>InvalidAthleteDataError</code> (<code>models.py</code>);</li>
+            <li>чиста бізнес-логіка для обліку результатів, пошуку, визначення рекордів, розрахунку середнього значення, статистики та рейтингування (<code>services.py</code>);</li>
+            <li>зручна консольна точка входу з меню (<code>menu-driven interface</code>) та захищеним введенням даних із клавіатури (<code>main.py</code>).</li>
+        </ul>
+    </li>
+    <li><strong>Стандартизація та пакування:</strong> налаштовано декларативний файл <code>pyproject.toml</code> за специфікацією PEP 621. Проєкт встановлено у віртуальне середовище <code>.venv</code> в режимі редагування (<code>editable installation</code>), що забезпечило доступність прямої консольної команди <code>sports-tracker</code>.</li>
+    <li><strong>Контроль версій:</strong> налаштовано коректні правила ігнорування артефактів у <code>.gitignore</code>. Життєвий цикл розробки зафіксовано в системі Git за допомогою атомарних логічних комітів із дотриманням загальноприйнятих конвенцій іменування.</li>
+    <li><strong>Тестування:</strong> розроблено набір юніт-тестів у каталозі <code>tests/</code>, що підтвердили стовідсоткову коректність роботи всіх розроблених алгоритмів.</li>
+</ol>
+<p>Створений проєкт слугує надійним, гнучким і тестованим базисом для подальшого розширення в наступних лабораторних роботах навчального курсу.</p>
+
+</body>
+</html>
