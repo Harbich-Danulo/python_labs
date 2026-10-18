@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Звіт з лабораторної роботи №4 - Гарбіч Данило</title>
+<style>
+    @page {
+        size: A4;
+        margin: 20mm 15mm 20mm 20mm;
+    }
+    
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12.5pt;
+        line-height: 1.35;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-break {
+        page-break-after: always;
+        break-after: page;
+    }
+
+    /* Title Page */
+    .title-page {
+        height: 94vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 20px 0;
+    }
+    .tp-header {
+        font-size: 13.5pt;
+        font-weight: bold;
+        line-height: 1.3;
+        text-transform: uppercase;
+        text-align: center;
+        color: #000;
+    }
+    .tp-subheader {
+        font-size: 12pt;
+        margin-top: 6px;
+        color: #111;
+        text-align: center;
+        text-transform: none;
+    }
+    .tp-body {
+        margin: auto 0;
+        text-align: center;
+    }
+    .tp-title-main {
+        font-size: 26pt;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+    .tp-title-sub {
+        font-size: 14pt;
+        font-weight: normal;
+        color: #111;
+        margin-bottom: 14px;
+    }
+    .tp-title-theme {
+        font-size: 18pt;
+        font-weight: bold;
+        color: #000;
+        line-height: 1.3;
+        padding: 0 40px;
+    }
+    .tp-sign {
+        width: 100%;
+        text-align: right;
+        font-size: 12.5pt;
+        line-height: 1.45;
+        margin-bottom: 40px;
+        padding-right: 10px;
+    }
+    .tp-footer {
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Content styling */
+    h2 {
+        font-size: 14pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 24px;
+        margin-bottom: 10px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    h3 {
+        font-size: 12.5pt;
+        font-weight: bold;
+        color: #000;
+        margin-top: 14px;
+        margin-bottom: 6px;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    p {
+        text-align: justify;
+        margin-top: 4px;
+        margin-bottom: 8px;
+        text-indent: 1.25cm;
+    }
+    .no-indent {
+        text-indent: 0;
+    }
+    ul, ol {
+        margin-top: 4px;
+        margin-bottom: 8px;
+        padding-left: 2.2cm;
+    }
+    li {
+        margin-bottom: 4px;
+        text-align: justify;
+    }
+
+    /* Code & Terminal Blocks */
+    pre, code {
+        font-family: 'Consolas', 'Courier New', monospace;
+    }
+    pre {
+        background-color: #f8f9fa;
+        border: 1px solid #d0d7de;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-size: 9.5pt;
+        line-height: 1.25;
+        overflow-x: auto;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+    }
+    .terminal-box {
+        background-color: #1a202c;
+        color: #e2e8f0;
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        line-height: 1.25;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin: 8px 0 12px 0;
+        white-space: pre;
+        overflow-x: auto;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 10.5pt;
+        page-break-inside: avoid;
+    }
+    th, td {
+        border: 1px solid #a0aec0;
+        padding: 5px 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #edf2f7;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Q&A Section */
+    .qa-item {
+        margin-bottom: 12px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    .qa-q {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 2px;
+    }
+    .qa-a {
+        text-indent: 1.25cm;
+        text-align: justify;
+        margin-top: 0;
+    }
+</style>
+</head>
+<body>
+
+<!-- 1. ТИТУЛЬНА СТОРІНКА -->
+<div class="title-page page-break">
+    <div class="tp-header">
+        Міністерство освіти і науки України<br>
+        Львівський національний університет імені Івана Франка<br>
+        <div class="tp-subheader">Факультет електроніки та комп'ютерних технологій<br>Кафедра системного проектування</div>
+    </div>
+
+    <div class="tp-body">
+        <div class="tp-title-main">ЗВІТ</div>
+        <div class="tp-title-sub">про виконання лабораторної роботи №4<br>з курсу «Професійний Python»</div>
+        <div class="tp-title-theme">«Професійне ООП та система типів Python»</div>
+    </div>
+
+    <div class="tp-sign">
+        Виконав:<br>
+        студент 3 курсу, групи ФЕП-31с<br>
+        Гарбіч Данило<br><br>
+        Перевірив:<br>
+        професор<br>
+        Свелеба Сергій Андрійович
+    </div>
+
+    <div class="tp-footer">
+        Львів — 2026
+    </div>
+</div>
+
+<!-- 2. НОМЕР І ТЕМА -->
+<h2>2. Номер і тема лабораторної роботи</h2>
+<p class="no-indent"><strong>Лабораторна робота №4.</strong> «Професійне ООП та система типів Python».</p>
+
+<!-- 3. МЕТА РОБОТИ -->
+<h2>3. Мета роботи</h2>
+<p>Сформувати практичні навички побудови професійної об'єктно-орієнтованої архітектури мовою Python із використанням класів, композиції, наслідування, абстрактних базових класів (<code>ABC</code>), структурних інтерфейсів (<code>Protocol</code>), датакласів (<code>dataclass</code>), інкапсуляції через властивості (<code>properties</code>), спеціальних методів (<code>dunder methods</code>), принципів SOLID та сучасної статичної системи типізації (<code>type hints</code>, <code>Generic</code>, <code>TypeVar</code>, <code>TypedDict</code>). Навчитися верифікувати кодову базу за допомогою статичного аналізатора типів <code>mypy</code>.</p>
+
+<!-- 4. ІНДИВІДУАЛЬНИЙ ВАРІАНТ -->
+<h2>4. Номер індивідуального варіанта</h2>
+<p class="no-indent"><strong>Варіант №9:</strong> «Система обліку спортивних результатів».</p>
+
+<!-- 5. ОПИС ПРЕДМЕТНОЇ ОБЛАСТІ -->
+<h2>5. Опис предметної області</h2>
+<p>Предметна область охоплює облік та аналіз досягнень спортсменів на змаганнях різного рівня. Система забезпечує реєстрацію спортсменів, видів спорту, турнірів та фіксацію індивідуальних результатів. Змагальні результати мають різні метрики (бали, метри або секунди) та різні критерії лідерства (більший бал краще або менший час краще). Система формує рейтингові таблиці, розраховує агреговані статистичні показники та сповіщає зовнішні підсистеми про нові рекорди.</p>
+
+<!-- 6. СПИСОК DOMAIN ENTITIES -->
+<h2>6. Список domain entities</h2>
+<ul>
+    <li><strong><code>Athlete</code></strong> — сутність спортсмена (ID, ім'я, країна, вік);</li>
+    <li><strong><code>Sport</code></strong> — сутність спортивної дисципліни (ID, назва, одиниця вимірювання, прапорець виграшу: більше чи менше);</li>
+    <li><strong><code>Competition</code></strong> — сутність змагання (ID, назва, місто/локація, рік);</li>
+    <li><strong><code>Result</code></strong> — центральна сутність спортивного результату (композиція Athlete, Sport, Competition, Score);</li>
+    <li><strong><code>RankingTable</code></strong> — контейнер рейтингу спортсменів зі стратегією сортування та dunder-методами.</li>
+</ul>
+
+<!-- 7. CLASS DIAGRAM -->
+<h2>7. Class diagram</h2>
+<pre>
+               RankingStrategy (ABC)
+                         ▲
+            ┌────────────┴─────────────┐
+            │                          │
+ HigherScoreWinsStrategy     LowerTimeWinsStrategy
+            ▲                          ▲
+            └────────────┬─────────────┘
+                         │ uses (Strategy pattern)
+                         │
+                    RankingTable ──────► contains: Result [0..*]
+                         │                    │
+                         │                    ├── has-a: Athlete
+                         │                    ├── has-a: Sport
+                         │                    ├── has-a: Competition
+                         │                    └── has-a: Score (Value Object)
+                         │
+              SportsAccountingService
+                         │
+     ├── athlete_repo: InMemoryRepository[Athlete] (Generic)
+     ├── result_repo:  InMemoryRepository[Result]  (Generic)
+     ├── notifier:     Notifier (Protocol)
+     └── exporter:     ResultExporter (Protocol)
+</pre>
+
+<!-- 8. ПОЯСНЕННЯ INHERITANCE -->
+<h2>8. Пояснення inheritance</h2>
+<p>Наслідування використано для реалізації патерну <strong>Strategy</strong>: базовий абстрактний клас <code>RankingStrategy(ABC)</code> визначає інтерфейс методу <code>sort_results()</code>, а підкласи <code>HigherScoreWinsStrategy</code> та <code>LowerTimeWinsStrategy</code> реалізують специфічні правила сортування. Це відповідає відношенню <strong>is-a</strong> та принципу Liskov Substitution Principle (LSP).</p>
+
+<!-- 9. ПОЯСНЕННЯ COMPOSITION -->
+<h2>9. Пояснення composition</h2>
+<p>Композиція реалізує зв'язок <strong>has-a</strong>: сутність <code>Result</code> компонується з <code>Athlete</code>, <code>Sport</code>, <code>Competition</code> та <code>Score</code>; <code>RankingTable</code> містить список результатів та стратегію ранжування; а сервіс <code>SportsAccountingService</code> об'єднує репозиторії та протоколи сповіщень. Це забезпечує слабку зв'язаність компонентів (low coupling) та максимальну гнучкість системи.</p>
+
+<!-- 10. ПРИКЛАД ENCAPSULATION -->
+<h2>10. Приклад encapsulation</h2>
+<pre>
+class Result:
+    _score: Score
+
+    @property
+    def score(self) -> Score:
+        return self._score
+
+    @score.setter
+    def score(self, new_score: Score) -> None:
+        if new_score.value &lt; 0:
+            raise ValueError("Result score cannot be negative.")
+        self._score = new_score
+</pre>
+
+<!-- 11. ПРИКЛАД PROPERTY -->
+<h2>11. Приклад property</h2>
+<pre>
+@property
+def score(self) -> Score:
+    return self._score
+</pre>
+
+<!-- 12. ПРИКЛАД DATACLASS -->
+<h2>12. Приклад dataclass</h2>
+<pre>
+@dataclass
+class Athlete:
+    id: int
+    name: str
+    country: str = "Україна"
+    age: int = 20
+
+    def __post_init__(self) -> None:
+        self.name = self.name.strip()
+        if not self.name:
+            raise ValueError("Athlete name cannot be empty.")
+</pre>
+
+<!-- 13. ПРИКЛАД IMMUTABLE VALUE OBJECT -->
+<h2>13. Приклад immutable value object</h2>
+<pre>
+@dataclass(frozen=True, slots=True)
+class Score:
+    value: float
+    unit: str = "pts"
+
+    def __post_init__(self) -> None:
+        if self.value &lt; 0:
+            raise ValueError(f"Score value cannot be negative: {self.value}")
+
+    def __add__(self, other: "Score") -> "Score":
+        if self.unit != other.unit:
+            raise ValueError(f"Unit mismatch: {self.unit} != {other.unit}")
+        return Score(round(self.value + other.value, 4), self.unit)
+</pre>
+
+<!-- 14. ПРИКЛАД ABC -->
+<h2>14. Приклад ABC (Abstract Base Class)</h2>
+<pre>
+from abc import ABC, abstractmethod
+
+class RankingStrategy(ABC):
+    @abstractmethod
+    def sort_results(self, results: list[Result]) -> list[Result]:
+        ...
+</pre>
+
+<!-- 15. ПРИКЛАД PROTOCOL -->
+<h2>15. Приклад Protocol</h2>
+<pre>
+from typing import Protocol, runtime_checkable
+
+@runtime_checkable
+class Identifiable(Protocol):
+    @property
+    def id(self) -> int:
+        ...
+
+class Notifier(Protocol):
+    def send(self, recipient: str, message: str) -> None:
+        ...
+</pre>
+
+<!-- 16. DUNDER METHODS -->
+<h2>16. Dunder methods (спеціальні методи)</h2>
+<p>У класах <code>RankingTable</code> та <code>Score</code> реалізовано методи: <code>__len__</code> (розмір таблиці), <code>__iter__</code> (ітерація в циклі for), <code>__contains__</code> (перевірка входження через 'in'), <code>__getitem__</code> (індексація table[0]), <code>__add__</code> (арифметика додавання балів), <code>__str__</code> та <code>__repr__</code>.</p>
+
+<!-- 17. GENERIC CLASS -->
+<h2>17. Generic class</h2>
+<pre>
+class InMemoryRepository(Generic[TEntity]):
+    def __init__(self) -> None:
+        self._items: dict[int, TEntity] = {}
+
+    def add(self, entity: TEntity) -> None:
+        self._items[entity.id] = entity
+
+    def get(self, entity_id: int) -> TEntity | None:
+        return self._items.get(entity_id)
+</pre>
+
+<!-- 18. TYPEVAR -->
+<h2>18. TypeVar</h2>
+<pre>
+from typing import TypeVar
+TEntity = TypeVar("TEntity", bound=Identifiable)
+</pre>
+
+<!-- 19. TYPEDDICT -->
+<h2>19. TypedDict</h2>
+<pre>
+from typing import TypedDict, NotRequired
+
+class ResultPayload(TypedDict):
+    result_id: int
+    athlete_id: int
+    athlete_name: str
+    country: str
+    age: int
+    sport_name: str
+    competition_name: str
+    location: str
+    year: int
+    score_value: float
+    score_unit: str
+    category: str
+    notes: NotRequired[str]
+</pre>
+
+<!-- 20. APPLICATION SERVICE -->
+<h2>20. Application service</h2>
+<pre>
+class SportsAccountingService:
+    def __init__(
+        self,
+        athlete_repo: InMemoryRepository[Athlete],
+        result_repo: InMemoryRepository[Result],
+        notifier: Notifier,
+        exporter: ResultExporter,
+    ) -> None:
+        self._athlete_repo = athlete_repo
+        self._result_repo = result_repo
+        self._notifier = notifier
+        self._exporter = exporter
+</pre>
+
+<!-- 21. DEPENDENCY INJECTION -->
+<h2>21. Приклад Dependency Injection</h2>
+<pre>
+athlete_repo = InMemoryRepository[Athlete]()
+result_repo = InMemoryRepository[Result]()
+notifier = ConsoleNotifier()
+exporter = MarkdownExporter()
+
+service = SportsAccountingService(
+    athlete_repo=athlete_repo,
+    result_repo=result_repo,
+    notifier=notifier,
+    exporter=exporter,
+)
+</pre>
+
+<!-- 22. SOLID -->
+<div class="page-break"></div>
+<h2>22. Пояснення принципів SOLID</h2>
+<ul>
+    <li><strong>SRP:</strong> Клас <code>Score</code> відповідає виключно за значення та одиницю вимірювання, <code>RankingStrategy</code> — за алгоритм ранжування, <code>SportsAccountingService</code> — за бізнес-сценарії.</li>
+    <li><strong>OCP:</strong> Нові правила сортування додаються через нові класи-нащадки <code>RankingStrategy</code> без зміни коду існуючих класів.</li>
+    <li><strong>LSP:</strong> Підкласи <code>HigherScoreWinsStrategy</code> та <code>LowerTimeWinsStrategy</code> коректно замінюють базову абстракцію <code>RankingStrategy</code>.</li>
+    <li><strong>ISP:</strong> Протоколи розділені на вузькі незалежні контракти (<code>Identifiable</code>, <code>ScoredEntity</code>, <code>Notifier</code>, <code>ResultExporter</code>).</li>
+    <li><strong>DIP:</strong> <code>SportsAccountingService</code> залежить від абстракцій (<code>Notifier</code>, <code>ResultExporter</code>), а не від конкретних реалізацій поштових клієнтів чи файлових форматів.</li>
+</ul>
+
+<!-- 23. ОСНОВНИЙ КОД -->
+<h2>23. Основний код програми</h2>
+<pre>
+def main() -> None:
+    service = build_sample_service()
+    seed_demo_data(service)
+
+    # Демонстрація Value Object
+    s1 = Score(2.10, "m")
+    s2 = Score(0.05, "m")
+    print(f"Value Object Score: {s1} + {s2} = {s1 + s2}")
+
+    # Пошук лідера
+    best = service.find_best_result("Стрибки у висоту")
+    if best:
+        print(f"Лідер стрибків: {best.athlete.name} — {best.score}")
+
+    # Контейнер RankingTable
+    table = service.build_ranking_table("Стрибки у висоту")
+    print(f"Елементів у таблиці: {len(table)}, Лідер: {table[0].athlete.name}")
+
+    # Експорт звіту
+    report = service.export_report("Стрибки у висоту")
+    print(report)
+</pre>
+
+<!-- 24. SCREENSHOT EXECUTION -->
+<h2>24. Результат виконання програми (Screenshot execution)</h2>
+<div class="terminal-box">===========================================================================
+  ЛАБОРАТОРНА РОБОТА №4: ПРОФЕСІЙНЕ ООП ТА СИСТЕМА ТИПІВ PYTHON
+  Варіант 9: Система обліку спортивних результатів
+===========================================================================
+
+[1] Ініціалізація сервісу через Dependency Injection:
+
+[2] Реєстрація спортивних результатів (DTO Payload -> Domain Entity):
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Ярослава Магучіх — 2.10 m (Стрибки у висоту)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Ірина Геращенко — 2.00 m (Стрибки у висоту)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Юлія Левченко — 1.95 m (Стрибки у висоту)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Ілля Ковтун — 15.65 pts (Спортивна гімнастика)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Олег Верняєв — 15.30 pts (Спортивна гімнастика)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Михайло Романчук — 461.50 s (Плавання 800м)
+[NOTIFICATION] To admin@olympic.ua: Зареєстровано новий результат: Олександр Желтяков — 472.10 s (Плавання 800м)
+
+[3] Демонстрація Value Object Score (frozen=True, slots=True, __add__):
+  2.10 m + 0.05 m = 2.15 m (Тип: Score)
+
+[4] Пошук за видом спорту 'Стрибки у висоту':
+  * Ярослава Магучіх       | 2.10 m | Diamond League
+  * Ірина Геращенко        | 2.00 m | Олімпійські Ігри
+  * Юлія Левченко          | 1.95 m | Чемпіонат України
+
+[5] Найкращий результат у дисципліні 'Стрибки у висоту':
+  Рекордсмен: Ярослава Магучіх — 2.10 m (Дорослі)
+
+[6] Розрахунок статистики для 'Стрибки у висоту':
+  Кількість спроб:     3
+  Сумарна висота:      6.05 m
+  Середня висота:      2.02 m
+  Максимальна висота:  2.10 m
+  Мінімальна висота:   1.95 m
+
+[7] Контейнер RankingTable (Dunder методи: len=3, '101 in table'=True):
+  Лідер таблиці (table[0]): Ярослава Магучіх з результатом 2.10 m
+
+  Повна рейтингова таблиця (ітерація __iter__):
+    1. Ярослава Магучіх       : 2.10 m (Дорослі)
+    2. Ірина Геращенко        : 2.00 m (Дорослі)
+    3. Юлія Левченко          : 1.95 m (Дорослі)
+
+[8] Рейтинг для часової дисципліни 'Плавання 800м' (Стратегія: менший час кращий):
+    1. Михайло Романчук       : 461.50 s (Дорослі)
+    2. Олександр Желтяков     : 472.10 s (Юніори)
+
+[9] Генерація та експорт звіту (ResultExporter Protocol):
+[EXPORT] Generated Markdown report for 'Рейтинг дисципліни 'Стрибки у висоту''
+# Рейтинг дисципліни 'Стрибки у висоту'
+
+- 1. Ярослава Магучіх: 2.10 m (Дорослі)
+- 2. Ірина Геращенко: 2.00 m (Дорослі)
+- 3. Юлія Левченко: 1.95 m (Дорослі)</div>
+
+<!-- 25. РЕЗУЛЬТАТ MYPY -->
+<h2>25. Результат перевірки mypy</h2>
+<div class="terminal-box">$ python -m mypy src
+Success: no issues found in 8 source files</div>
+
+<!-- 26. ТРИ ТИПОВІ ПОМИЛКИ -->
+<h2>26. Приклади знайдених type errors (експеримент розділу 71)</h2>
+<div class="terminal-box">$ python -m mypy tests/type_errors_demo.py
+tests\type_errors_demo.py:10: error: Incompatible types in assignment (expression has type "str", variable has type "int")  [assignment]
+tests\type_errors_demo.py:14: error: Incompatible return value type (got "str", expected "int")  [return-value]
+tests\type_errors_demo.py:19: error: Argument 1 to "add" of "InMemoryRepository" has incompatible type "Score"; expected "Athlete"  [arg-type]
+Found 3 errors in 1 file (checked 1 source file)</div>
+
+<!-- 27. ВИПРАВЛЕНИЙ РЕЗУЛЬТАТ -->
+<h2>27. Виправлений результат type checking</h2>
+<div class="terminal-box">$ python -m mypy src
+Success: no issues found in 8 source files</div>
+
+<!-- 28. КОНТРОЛЬНІ ЗАПИТАННЯ -->
+<div class="page-break"></div>
+<h2>28. Відповіді на контрольні запитання</h2>
+
+<div class="qa-item">
+    <div class="qa-q">1. Що таке class?</div>
+    <div class="qa-a">Клас — це шаблон (креслення), який описує структуру атрибутів та поведінку (методи) створюваних на його основі об'єктів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">2. Що таке object?</div>
+    <div class="qa-a">Об'єкт — це сутність у пам'яті комп'ютера, яка має стан, поведінку та унікальний ідентифікатор.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">3. Що таке instance?</div>
+    <div class="qa-a">Екземпляр конкретного класу, створений за його описом.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">4. Для чого __init__()?</div>
+    <div class="qa-a">Спеціальний метод-ініціалізатор, що налаштовує початковий стан екземпляра під час його створення.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">5. Що таке instance attribute?</div>
+    <div class="qa-a">Атрибут, який прив'язаний до конкретного екземпляра об'єкта (зберігається в self.__dict__).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">6. Що таке class attribute?</div>
+    <div class="qa-a">Атрибут, визначений на рівні самого класу, спільний для всіх його екземплярів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">7. Що таке encapsulation?</div>
+    <div class="qa-a">Принцип ООП, за яким внутрішній стан об'єкта захищається від прямого неконтрольованого зовнішнього втручання та змінюється лише через публічні методи.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">8. Для чого properties?</div>
+    <div class="qa-a">Декоратор @property дозволяє звертатися до методу як до атрибута з можливістю контролю читання, зміни (setter) та видалення (deleter).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">9. Чим property відрізняється від public field?</div>
+    <div class="qa-a">Доступ до звичайного поля не перевіряється, а property дозволяє виконувати валідацію та обчислення при присвоєнні або зчитуванні.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">10. Що таке inheritance?</div>
+    <div class="qa-a">Механізм мови, що дозволяє одному класу успадкувати структуру й поведінку іншого класу для повторного використання або розширення.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">11. Що означає relation is-a?</div>
+    <div class="qa-a">Відношення спеціалізації між класами (наприклад, HigherScoreWinsStrategy is-a RankingStrategy).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">12. Що таке composition?</div>
+    <div class="qa-a">Принцип побудови складних об'єктів шляхом об'єднання простіших і незалежних об'єктів як своїх полів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">13. Що означає relation has-a?</div>
+    <div class="qa-a">Відношення володіння (наприклад, Result has-a Athlete, Car has-an Engine).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">14. Коли composition краща за inheritance?</div>
+    <div class="qa-a">У більшості випадків проектування архітектури, коли поведінка може динамічно змінюватися під час виконання та потрібно уникнути жорсткої зв'язаності монолітних ієрархій наслідування.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">15. Для чого super()?</div>
+    <div class="qa-a">Для виклику реалізації методів батьківського класу згідно з порядком MRO (Method Resolution Order).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">16. Що таке polymorphism?</div>
+    <div class="qa-a">Здатність різнорідних об'єктів реалізовувати однаковий інтерфейс з власною специфічною поведінкою.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">17. Що таке duck typing?</div>
+    <div class="qa-a">Принцип динамічної типізації: якщо об'єкт реалізує необхідний набір методів та властивостей, він вважається придатним для використання незалежно від його положення в ієрархії наслідування.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">18. Що таке ABC?</div>
+    <div class="qa-a">Абстрактний базовий клас (Abstract Base Class), який не дозволяє створювати власні екземпляри і зобов'язує підкласи реалізувати методи, помічені @abstractmethod.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">19. Для чого abstractmethod?</div>
+    <div class="qa-a">Декоратор, що позначає метод в ABC як обов'язковий до реалізації в усіх конкретних нащадках.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">20. Чи можна створити instance abstract class?</div>
+    <div class="qa-a">Ні, спроба інстанціювати клас, що має нереалізовані абстрактні методи, викликає помилку TypeError.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">21. Що таке Protocol?</div>
+    <div class="qa-a">Механізм структурної типізації (PEP 544), що дозволяє описувати інтерфейси без потреби явного успадкування.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">22. Чим Protocol відрізняється від ABC?</div>
+    <div class="qa-a">ABC вимагає явного наслідування (номінальна типізація), а Protocol перевіряє лише відповідність сигнатур методів (структурна типізація).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">23. Що таке structural typing?</div>
+    <div class="qa-a">Система типів, де сумісність визначається формою об'єкта (наявністю полів і методів), а не ім'ям його батьківського класу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">24. Що таке nominal typing?</div>
+    <div class="qa-a">Система типів, де сумісність перевіряється за явним деревом наслідування та назвою типу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">25. Що таке dataclass?</div>
+    <div class="qa-a">Декоратор стандартної бібліотеки, що автоматично генерує шаблонні методи класів (__init__, __repr__, __eq__) на основі оголошених анотацій типів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">26. Які methods генерує dataclass?</div>
+    <div class="qa-a">За замовчуванням: __init__, __repr__, __eq__, а за налаштуваннями — __hash__, __lt__, __gt__ тощо.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">27. Для чого default_factory?</div>
+    <div class="qa-a">Функція для безпечної ініціалізації змінюваних значень за замовчуванням (field(default_factory=list)), щоб уникнути спільного використання одного екземпляра списку всіма об'єктами.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">28. Чому mutable default є проблемою?</div>
+    <div class="qa-a">Якщо список чи словник оголошено як значення за замовчуванням у конструкторі, він створюється один раз під час завантаження модуля і модифікується спільно всіма екземплярами.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">29. Для чого __post_init__()?</div>
+    <div class="qa-a">Хук у dataclass, що автоматично викликається після стандартного __init__ для виконання додаткової валідації чи розрахунку похідних полів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">30. Що означає frozen=True?</div>
+    <div class="qa-a">Робить об'єкт датакласу незмінним (immutable): спроба змінити атрибут викликає виняток FrozenInstanceError.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">31. Що означає slots=True?</div>
+    <div class="qa-a">Замінює стандартний динамічний словник __dict__ фіксованим кортежем слотів __slots__, що зменшує споживання оперативної пам'яті та прискорює доступ до полів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">32. Що таке dunder method?</div>
+    <div class="qa-a">Спеціальний магічний метод із подвійними підкресленнями (double underscore), що інтегрує користувацький клас у стандартну об'єктну модель мови Python.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">33. Для чого __repr__()?</div>
+    <div class="qa-a">Повертає однозначне офіційне строкове представлення об'єкта для розробника та налагодження.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">34. Для чого __str__()?</div>
+    <div class="qa-a">Повертає зручне для читання користувачем представлення об'єкта.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">35. Для чого __len__()?</div>
+    <div class="qa-a">Викликається вбудованою функцією len() для повернення розміру контейнера.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">36. Для чого __iter__()?</div>
+    <div class="qa-a">Повертає ітератор над елементами об'єкта для використання в циклі for чи функціях ітерації.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">37. Для чого __contains__()?</div>
+    <div class="qa-a">Реалізує роботу оператора перевірки входження in.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">38. Для чого __call__()?</div>
+    <div class="qa-a">Дозволяє викликати екземпляр класу як звичайну функцію: obj().</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">39. Що таке SOLID?</div>
+    <div class="qa-a">Акронім 5 основоположних принципів об'єктно-орієнтованого проектування: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">40. Що означає SRP?</div>
+    <div class="qa-a">Принцип єдиної відповідальності: клас повинен мати лише одну причину для зміни.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">41. Що означає OCP?</div>
+    <div class="qa-a">Принцип відкритості/закритості: програмні сутності мають бути відкритими для розширення, але закритими для модифікації.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">42. Що означає LSP?</div>
+    <div class="qa-a">Принцип підстановки Лісков: об'єкти підкласу мають бути взаємозамінними з об'єктами базового класу без порушення коректності програми.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">43. Що означає ISP?</div>
+    <div class="qa-a">Принцип розділення інтерфейсу: клієнти не повинні залежати від методів, якими вони не користуються; краще багато вузьких інтерфейсів, ніж один широкий.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">44. Що означає DIP?</div>
+    <div class="qa-a">Принцип інверсії залежностей: високорівневі модулі не повинні залежати від низькорівневих; обидва мають залежати від абстракцій.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">45. Що таке dependency injection?</div>
+    <div class="qa-a">Патерн, коли залежності передаються об'єкту ззовні (через конструктор чи метод), а не створюються ним самостійно всередині.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">46. Чому DI покращує testability?</div>
+    <div class="qa-a">Дозволяє легко заміняти важкі зовнішні ресурси (бази даних, мережеві сервіси) легкими mock-об'єктами в тестах.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">47. Що таке type hint?</div>
+    <div class="qa-a">Анотація типів, що вказує очікуваний тип змінної, параметра чи поверненого функцією значення.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">48. Чи перевіряє Python type hints автоматично в runtime?</div>
+    <div class="qa-a">Ні, інтерпретатор ігнорує type hints під час виконання; вони слугують документацією для IDE та аналізаторів типів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">49. Що таке static type checker?</div>
+    <div class="qa-a">Інструмент (наприклад, mypy, Pyright), який аналізує код до запуску без виконання програми та знаходить невідповідності типів.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">50. Для чого mypy?</div>
+    <div class="qa-a">Найпопулярніший офіційний статичний типізатор для Python.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">51. Для чого Pyright?</div>
+    <div class="qa-a">Швидкий статичний типізатор від Microsoft, що лежить в основі розширення Pylance у VS Code.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">52. Що таке TypeVar?</div>
+    <div class="qa-a">Змінна типу в Python, яка дозволяє писати параметрично поліморфний (generic) код.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">53. Що таке Generic?</div>
+    <div class="qa-a">Базовий клас для створення параметризованих типів, що працюють з різними конкретними типами без дублювання логіки.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">54. Що означає Generic[T]?</div>
+    <div class="qa-a">Вказує, що клас параметризований змінною типу T.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">55. Що таке bound TypeVar?</div>
+    <div class="qa-a">Обмеження типу зверху: TypeVar('T', bound=SomeClass), яке дозволяє використовувати лише SomeClass або його підтипи.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">56. Що таке constrained TypeVar?</div>
+    <div class="qa-a">Обмеження типу чітким фіксованим списком типів: TypeVar('T', int, float).</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">57. Що таке TypedDict?</div>
+    <div class="qa-a">Механізм опису фіксованої структури ключів та їхніх типів для звичайних словників dict.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">58. Чим TypedDict відрізняється від dataclass?</div>
+    <div class="qa-a">TypedDict під час виконання залишається звичайним словником без поведінки та методів, а dataclass створює повноцінний екземпляр користувацького класу.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">59. Коли доцільно використовувати TypedDict?</div>
+    <div class="qa-a">Для валідації зовнішніх вхідних payload-структур (JSON, конфігураційні файли, відповіді API) перед конвертацією в доменні сутності.</div>
+</div>
+
+<div class="qa-item">
+    <div class="qa-q">60. Чому external payload і domain object краще розділяти?</div>
+    <div class="qa-a">Для ізоляції бізнес-логіки від змін у форматах зовнішніх API. Якщо зовнішній сервіс змінить назву полів JSON, це не вплине на внутрішні доменні сутності, а вимагатиме лише зміни коду перетворення (парсингу).</div>
+</div>
+
+<!-- 29. ВИСНОВОК -->
+<div class="page-break"></div>
+<h2>29. Висновок</h2>
+<p>Під час виконання лабораторної роботи №4 було повністю опановано стандарти сучасного професійного об'єктно-орієнтованого проектування та системи статичної типізації Python:</p>
+<ol>
+    <li><strong>Доменна модель:</strong> для індивідуального варіанта №9 («Система обліку спортивних результатів») спроектовано та реалізовано повний набір сутностей: <code>Athlete</code>, <code>Sport</code>, <code>Competition</code>, <code>Result</code> та <code>RankingTable</code>.</li>
+    <li><strong>Композиція та патерни проектування:</strong> архітектура базується на перевазі композиції над наслідуванням. Реалізовано патерн <strong>Strategy</strong> через ієрархію <code>RankingStrategy</code> (ABC) для підтримки різних спортивних правил сортування.</li>
+    <li><strong>Value Objects та Dunder методи:</strong> розроблено незмінний об'єкт значення <code>Score</code> (<code>frozen=True</code>, <code>slots=True</code>) з арифметикою та валідацією, а також реалізовано dunder-методи <code>__len__</code>, <code>__iter__</code>, <code>__contains__</code>, <code>__getitem__</code>.</li>
+    <li><strong>SOLID та інверсія залежностей:</strong> застосовано структурні протоколи <code>Notifier</code> та <code>ResultExporter</code> у поєднанні з ручним Dependency Injection, що забезпечило слабку зв'язаність та високу тестованість системи.</li>
+    <li><strong>Статична типізація:</strong> завдяки використанню <code>TypeVar</code>, <code>Generic</code>, <code>TypedDict</code> та суворому режиму аналізатора <code>mypy</code> забезпечено повну типову безпеку всього коду (<code>Success: no issues found in 8 source files</code>).</li>
+</ol>
+<p>Створена об'єктна модель є надійною, розширюваною та відповідає найвищим стандартам сучасної корпоративної розробки на Python.</p>
+
+</body>
+</html>

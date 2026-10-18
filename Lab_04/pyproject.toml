@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sports-app"
+version = "0.1.0"
+description = "Laboratory work 4: Professional OOP and Python Type System"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Danylo Harbich", email = "danul.harbich@lnu.edu.ua" }
+]
+keywords = ["oop", "solid", "type-hints", "mypy", "protocols", "generics"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.10",
+]
+
+[project.scripts]
+sports-app = "sports_app.main:main"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true
+warn_return_any = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
