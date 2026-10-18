@@ -1,0 +1,41 @@
+input:
+  path: data/sports_results.csv
+
+output:
+  path: output/sports_results.json
+  error_report_path: output/error_report.json
+
+processing:
+  skip_invalid: true
+  min_timestamp: "2024-01-01T00:00:00"
+  allowed_sports:
+    - "Стрибки у висоту"
+    - "Плавання 800м"
+    - "Спортивна гімнастика"
+    - "Біг 100м"
+    - "Стрільба з лука"
+  allowed_categories:
+    - "Дорослі"
+    - "Юніори"
+    - "Молодь"
+    - "Ветерани"
+  sport_rules:
+    "Стрибки у висоту":
+      min_value: 1.00
+      max_value: 2.50
+    "Плавання 800м":
+      min_value: 400.00
+      max_value: 800.00
+    "Спортивна гімнастика":
+      min_value: 10.00
+      max_value: 16.50
+    "Біг 100м":
+      min_value: 9.50
+      max_value: 20.00
+    "Стрільба з лука":
+      min_value: 0.00
+      max_value: 720.00
+
+logging:
+  level: INFO
+  path: logs/application.log

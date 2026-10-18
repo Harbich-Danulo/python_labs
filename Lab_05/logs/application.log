@@ -1,0 +1,23 @@
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | =================================================================
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | ЛАБОРАТОРНА РОБОТА №5: ОБРОБКА ПОМИЛОК, ФАЙЛИ ТА СЕРІАЛІЗАЦІЯ
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Варіант 9: Імпорт та експорт спортивних результатів
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Конфігурацію успішно завантажено з: config.yaml
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Режим обробки: Tolerant (skip_invalid=True)
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | =================================================================
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.utils | Початок операції: Sports Data Pipeline Processing
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 5: Ім'я спортсмена не може бути порожнім (рядок 5, поле 'athlete', значення='')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 10: Результат 3.8 виходить за межі допустимого діапазону [1.0, 2.5] для виду спорту 'Стрибки у висоту' (рядок 10, поле 'result', значення='3.8')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 11: Вид спорту 'Стрибки з жердиною' не входить до переліку дозволених ('Стрибки у висоту', 'Плавання 800м', 'Спортивна гімнастика', 'Біг 100м', 'Стрільба з лука') (рядок 11, поле 'sport', значення='Стрибки з жердиною')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 12: Результат має бути дійсним числовим значенням: invalid_num (рядок 12, поле 'result', значення='invalid_num')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 13: Вид спорту 'Велоспорт' не входить до переліку дозволених ('Стрибки у висоту', 'Плавання 800м', 'Спортивна гімнастика', 'Біг 100м', 'Стрільба з лука') (рядок 13, поле 'sport', значення='Велоспорт')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 14: Часова мітка 2020-01-01 12:00:00 є старішою за мінімально дозволену 2024-01-01 00:00:00 (рядок 14, поле 'timestamp', значення='2020-01-01T12:00:00')
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.services | Звіт про некоректні записи експортовано у output\error_report.json та output\error_report.csv
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.utils | Операція 'Sports Data Pipeline Processing' успішно завершена за 0.004240 с
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | -----------------------------------------------------------------
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | ПІДСУМКОВА СТАТИСТИКА ВИКОНАННЯ:
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main |   Всього прочитано записів: 14
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main |   Валідних записів (успішно): 8
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main |   Некоректних записів (помилки): 6
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main |   Експортовано у output\sports_results.json: 8
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main |   Окремий звіт про помилки записано у: output\error_report.json
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | -----------------------------------------------------------------

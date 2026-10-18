@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Звіт з лабораторної роботи №5 — Гарбіч Данило</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 20mm;
+            @bottom-right {
+                content: counter(page);
+                font-family: 'Times New Roman', serif;
+                font-size: 10pt;
+            }
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13pt;
+            line-height: 1.35;
+            color: #111;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        .title-page {
+            page-break-after: always;
+            height: 92vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .header-ministry {
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1.25;
+            text-transform: uppercase;
+        }
+        .header-faculty {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .title-main {
+            margin-top: 80px;
+            margin-bottom: 20px;
+        }
+        .title-main h1 {
+            font-size: 26pt;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .title-main h2 {
+            font-size: 14pt;
+            font-weight: normal;
+            margin: 0 0 8px 0;
+        }
+        .title-main h3 {
+            font-size: 17pt;
+            font-weight: bold;
+            margin: 15px 0 0 0;
+        }
+        .signature-block {
+            margin-top: 80px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: 0;
+            width: 320px;
+            text-align: right;
+            font-size: 12pt;
+            line-height: 1.35;
+        }
+        .footer-city {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: auto;
+            text-align: center;
+        }
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 22px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        h3 {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            page-break-after: avoid;
+        }
+        p, li {
+            text-align: justify;
+            margin-top: 4px;
+            margin-bottom: 5px;
+        }
+        ul, ol {
+            margin-top: 4px;
+            margin-bottom: 8px;
+            padding-left: 22px;
+        }
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9.5pt;
+            line-height: 1.25;
+            overflow-x: auto;
+            margin: 6px 0 10px 0;
+            page-break-inside: avoid;
+            border: 1px solid #1e293b;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 10.5pt;
+            background-color: #f1f5f9;
+            padding: 1px 4px;
+            border-radius: 3px;
+            color: #0f172a;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 10.5pt;
+            page-break-inside: avoid;
+        }
+        table, th, td {
+            border: 1px solid #94a3b8;
+        }
+        th, td {
+            padding: 6px 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+        .qa-item {
+            margin-bottom: 8px;
+            page-break-inside: avoid;
+        }
+        .qa-q {
+            font-weight: bold;
+            color: #0f172a;
+        }
+        .qa-a {
+            margin-left: 14px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+<div class="title-page">
+    <div>
+        <div class="header-ministry">Міністерство освіти і науки України<br>Львівський національний університет імені Івана Франка</div>
+        <div class="header-faculty">Факультет електроніки та комп'ютерних технологій<br>Кафедра системного проектування</div>
+    </div>
+
+    <div class="title-main">
+        <h1>ЗВІТ</h1>
+        <h2>про виконання лабораторної роботи №5</h2>
+        <h2>з курсу «Професійний Python»</h2>
+        <h3>«Обробка помилок, файли та серіалізація»</h3>
+    </div>
+
+    <div class="signature-block">
+        Виконав:<br>
+        студент 3 курсу, групи ФЕП-31с<br>
+        Гарбіч Данило<br><br>
+        Перевірив:<br>
+        професор<br>
+        Свелеба Сергій Андрійович
+    </div>
+
+    <div class="footer-city">
+        Львів — 2026
+    </div>
+</div>
+
+<h2>2. Номер і тема лабораторної роботи</h2>
+<p>Лабораторна робота №5. «Обробка помилок, файли та серіалізація».</p>
+
+<h2>3. Мета роботи</h2>
+<p>Сформувати практичні навички створення надійних Python-програм, які коректно працюють із помилками, файловими ресурсами, конфігурацією та структурованими форматами даних. Опанувати механізм exceptions, конструкції <code>try/except/else/finally</code>, створення domain-specific ієрархій винятків, exception chaining (<code>raise ... from ...</code>), принципи EAFP і fail-fast, контекстні менеджери, промислове логування через <code>logging</code>, модуль <code>pathlib</code>, серіалізацію у JSON/YAML, потокову обробку даних (streaming I/O) та атомарний запис файлів (atomic write).</p>
+
+<h2>4. Номер індивідуального варіанта</h2>
+<p><strong>Варіант №9:</strong> «Імпорт та експорт спортивних результатів».</p>
+
+<h2>5. Постановка задачі</h2>
+<p>Створити надійний модуль імпорту, валідації, фільтрації та експорту спортивних результатів відповідно до варіанта №9:</p>
+<ul>
+    <li>Поля сутності: <code>athlete</code>, <code>sport</code>, <code>result</code>, <code>category</code>, <code>timestamp</code>.</li>
+    <li>Працювати виключно через сучасний модуль <code>pathlib.Path</code>.</li>
+    <li>Реалізувати потокове читання даних (Streaming input через генератори) для запобігання вичерпанню RAM.</li>
+    <li>Підтримувати імпорт з CSV, JSON Lines та YAML через єдиний абстрактний інтерфейс (протокол <code>Importer</code>).</li>
+    <li>Забезпечити конфігурування конвеєра через зовнішній файл <code>config.yaml</code> із валідацією параметрів (fail-fast).</li>
+    <li>Побудувати domain-specific ієрархію винятків (<code>ApplicationError</code> &rarr; <code>DataError</code> &rarr; <code>RecordValidationError</code>).</li>
+    <li>Використати ланцюжки винятків (<code>raise ... from error</code>) для збереження першопричини низкорівневих помилок.</li>
+    <li>Реалізувати власний контекстний менеджер для транзакційності та профілювання часу операцій (<code>logged_operation</code>).</li>
+    <li>Налаштувати багаторівневе логування з очищенням чутливих даних.</li>
+    <li>Підтримувати дві політики надійності: <code>strict</code> (переривання) та <code>tolerant</code> (пропуск помилок із реєстрацією у звіті).</li>
+    <li>Реалізувати атомарний експорт (atomic write через <code>*.tmp</code> та <code>replace</code>).</li>
+    <li>Зібрати статистику обробки (<code>total</code>, <code>valid</code>, <code>invalid</code>, <code>exported</code>) та сформувати окремий звіт про помилки.</li>
+</ul>
+
+<h2>6. Input data schema</h2>
+<p>Схема полів для індивідуального варіанта 9:</p>
+<ul>
+    <li><code>athlete</code> (рядок): Ім'я спортсмена (непорожній рядок без провідних/кінцевих пробілів).</li>
+    <li><code>sport</code> (рядок): Назва спортивної дисципліни (повинна входити до списку <code>allowed_sports</code> із конфігурації).</li>
+    <li><code>result</code> (дійсне число): Числовий результат (перевіряється на відповідність діапазону <code>[min_value, max_value]</code> для конкретного виду спорту).</li>
+    <li><code>category</code> (рядок): Категорія («Дорослі», «Юніори», «Молодь», «Ветерани»).</li>
+    <li><code>timestamp</code> (рядок/дата): Часова мітка фіксації у форматі ISO 8601 (не старіша за <code>min_timestamp</code>).</li>
+</ul>
+
+<h2>7. Приклад вхідного CSV (<code>data/sports_results.csv</code>)</h2>
+<pre>athlete,sport,result,category,timestamp
+Ярослава Магучіх,Стрибки у висоту,2.10,Дорослі,2024-07-07T18:30:00
+Ірина Геращенко,Стрибки у висоту,2.00,Дорослі,2024-08-04T19:00:00
+Юлія Левченко,Стрибки у висоту,1.95,Дорослі,2024-06-15T17:45:00
+,Стрибки у висоту,1.90,Дорослі,2024-07-10T12:00:00
+Ілля Ковтун,Спортивна гімнастика,15.65,Дорослі,2024-07-29T16:15:00
+Олег Верняєв,Спортивна гімнастика,15.30,Дорослі,2024-07-29T16:30:00
+Михайло Романчук,Плавання 800м,461.50,Дорослі,2024-07-30T11:20:00
+Олександр Желтяков,Плавання 800м,472.10,Юніори,2024-07-30T11:25:00
+Сергій Бубка,Стрибки у висоту,3.80,Ветерани,2024-05-10T14:00:00
+Владислав Лавський,Стрибки з жердиною,5.80,Дорослі,2024-06-20T18:00:00
+Артем Коваль,Біг 100м,invalid_num,Юніори,2024-08-10T10:00:00
+Олена Старікова,Велоспорт,10.75,НевідомаКатегорія,2024-07-12T15:00:00
+Марія Савченко,Стрільба з лука,680.00,Дорослі,2020-01-01T12:00:00
+Андрій Проценко,Стрибки у висоту,2.25,Дорослі,2024-08-01T19:30:00</pre>
+
+<h2>8. Структура проєкту</h2>
+<pre>c:\labs\Lab_05\
+├── pyproject.toml                         # Конфігурація проєкту та mypy
+├── config.yaml                            # Зовнішня конфігурація YAML
+├── README.md                              # Опис проєкту
+├── data\
+│   └── sports_results.csv                 # Вхідні дані (валідно-дефектний набір)
+├── output\
+│   ├── sports_results.json                # Атомарний експорт валідних записів
+│   ├── error_report.json                  # Звіт відхилених записів (JSON)
+│   └── error_report.csv                   # Звіт відхилених записів (CSV)
+├── logs\
+│   └── application.log                    # Файловий журнал виконання
+├── src\reliable_sports_importer\
+│   ├── __init__.py                        # Версія пакета
+│   ├── py.typed                           # Маркер типізації PEP 561
+│   ├── exceptions.py                      # Доменна ієрархія винятків
+│   ├── models.py                          # Датакласи конфігурації та результатів
+│   ├── config.py                          # Завантажувач та валідатор конфігурації
+│   ├── logging_config.py                  # Налаштування багаторівневого логування
+│   ├── utils.py                           # Власний context manager та atomic writer
+│   ├── readers.py                         # Потокові імпортери (CSV, JSONL, YAML)
+│   ├── validators.py                      # Валідація правил предметної області
+│   ├── exporters.py                       # Атомарні експортери даних і помилок
+│   ├── services.py                        # Оркестратор пайплайну та збір статистики
+│   └── main.py                            # Точка входу в програму
+└── tests\
+    ├── test_sports_importer.py            # Модульні тести бізнес-правил
+    └── experiments_runner.py              # Автоматизований запуск 5 експериментів</pre>
+
+<h2>9. Ієрархія винятків (<code>exceptions.py</code>)</h2>
+<pre><code>class ApplicationError(Exception):
+    """Базовий виняток додатку."""
+
+class ConfigurationError(ApplicationError):
+    """Виникає при помилках конфігурації."""
+
+class DataError(ApplicationError):
+    """Базовий виняток для помилок обробки даних."""
+
+class DataImportError(DataError):
+    """Критичні помилки відкриття чи парсингу вхідного потоку."""
+
+class RecordValidationError(DataError):
+    """Помилка валідації окремого запису предметної області."""
+    def __init__(self, message: str, *, line_number: int | None = None,
+                 field: str | None = None, raw_value: Any = None) -> None:
+        super().__init__(message)
+        self.line_number = line_number
+        self.field = field
+        self.raw_value = raw_value
+
+class DataExportError(DataError):
+    """Помилка атомарного експорту або серіалізації."""</code></pre>
+
+<h2>10. Пояснення custom exceptions</h2>
+<p>Власна ієрархія винятків дозволяє чітко розмежовувати технічні низькорівневі збої операційної системи та помилки семантики даних. Спеціалізований клас <code>RecordValidationError</code> містить контекстні атрибути (номер рядка, ім'я поля, дефектне значення), що дозволяє сервісу точно ідентифікувати причину браку без деструктивного переривання всього циклу імпорту в tolerant-режимі.</p>
+
+<h2>11. Приклад exception chaining</h2>
+<pre><code>result_raw = row.get("result")
+try:
+    result_val = float(result_raw)
+except (TypeError, ValueError) as error:
+    raise RecordValidationError(
+        f"Результат має бути дійсним числовим значенням: {result_raw}",
+        line_number=line_number,
+        field="result",
+        raw_value=result_raw,
+    ) from error</code></pre>
+
+<h2>12. Вміст <code>config.yaml</code></h2>
+<pre><code>input:
+  path: data/sports_results.csv
+
+output:
+  path: output/sports_results.json
+  error_report_path: output/error_report.json
+
+processing:
+  skip_invalid: true
+  min_timestamp: "2024-01-01T00:00:00"
+  allowed_sports:
+    - "Стрибки у висоту"
+    - "Плавання 800м"
+    - "Спортивна гімнастика"
+    - "Біг 100м"
+    - "Стрільба з лука"
+  allowed_categories:
+    - "Дорослі"
+    - "Юніори"
+    - "Молодь"
+    - "Ветерани"
+  sport_rules:
+    "Стрибки у висоту":
+      min_value: 1.00
+      max_value: 2.50
+    "Плавання 800м":
+      min_value: 400.00
+      max_value: 800.00
+    "Спортивна гімнастика":
+      min_value: 10.00
+      max_value: 16.50
+    "Біг 100м":
+      min_value: 9.50
+      max_value: 20.00
+    "Стрільба з лука":
+      min_value: 0.00
+      max_value: 720.00
+
+logging:
+  level: INFO
+  path: logs/application.log</code></pre>
+
+<h2>13. Код configuration loader та validation (<code>config.py</code>)</h2>
+<pre><code>def load_config(path: Path) -> AppConfig:
+    if not path.exists():
+        raise ConfigurationError(f"Конфігураційний файл не знайдено: {path}")
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            raw: Any = yaml.safe_load(file)
+    except yaml.YAMLError as error:
+        raise ConfigurationError(f"Синтаксична помилка у YAML конфігурації: {error}") from error
+    except OSError as error:
+        raise ConfigurationError(f"Неможливо прочитати файл конфігурації: {error}") from error
+
+    config = AppConfig(...)
+    validate_config(config)
+    return config
+
+def validate_config(config: AppConfig) -> None:
+    if not config.input_path.exists():
+        raise ConfigurationError(f"Вхідний файл для обробки не знайдено: {config.input_path}")
+    if not config.processing.allowed_sports:
+        raise ConfigurationError("Список дозволених видів спорту не може бути порожнім")
+    for sport_name, rule in config.processing.sport_rules.items():
+        if rule.min_value > rule.max_value:
+            raise ConfigurationError(
+                f"Некоректне правило для '{sport_name}': min_value ({rule.min_value}) > max_value ({rule.max_value})"
+            )</code></pre>
+
+<h2>14. Logging configuration (<code>logging_config.py</code>)</h2>
+<pre><code>def configure_logging(level: str, path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    numeric_level = getattr(logging, level.upper(), logging.INFO)
+    file_handler = logging.FileHandler(path, encoding="utf-8")
+    stream_handler = logging.StreamHandler()
+    formatter = logging.Formatter(
+        fmt="%(asctime)s | %(levelname)-7s | %(name)s | %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
+    file_handler.setFormatter(formatter)
+    stream_handler.setFormatter(formatter)
+    root_logger = logging.getLogger()
+    root_logger.setLevel(numeric_level)
+    root_logger.handlers = [file_handler, stream_handler]</code></pre>
+
+<h2>15. Фрагмент log file (<code>logs/application.log</code>)</h2>
+<pre>2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | =================================================================
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | ЛАБОРАТОРНА РОБОТА №5: ОБРОБКА ПОМИЛОК, ФАЙЛИ ТА СЕРІАЛІЗАЦІЯ
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Варіант 9: Імпорт та експорт спортивних результатів
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Конфігурацію успішно завантажено з: config.yaml
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Режим обробки: Tolerant (skip_invalid=True)
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.utils | Початок операції: Sports Data Pipeline Processing
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 5: Ім'я спортсмена не може бути порожнім (рядок 5, поле 'athlete', значення='')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 10: Результат 3.8 виходить за межі допустимого діапазону [1.0, 2.5] для виду спорту 'Стрибки у висоту' (рядок 10, поле 'result', значення='3.8')
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 11: Вид спорту 'Стрибки з жердиною' не входить до переліку дозволених
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 12: Результат має бути дійсним числовим значенням: invalid_num
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 13: Вид спорту 'Велоспорт' не входить до переліку дозволених
+2026-10-18 19:07:20 | WARNING | reliable_sports_importer.services | Некоректний запис на рядку 14: Часова мітка 2020-01-01 12:00:00 є старішою за мінімально дозволену
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.services | Звіт про некоректні записи експортовано у output\error_report.json та output\error_report.csv
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.utils | Операція 'Sports Data Pipeline Processing' успішно завершена за 0.004240 с
+2026-10-18 19:07:20 | INFO    | reliable_sports_importer.main | Всього прочитано записів: 14 | Валідних: 8 | Некоректних: 6 | Експортовано: 8</pre>
+
+<h2>16. Streaming reader (<code>readers.py</code>)</h2>
+<pre><code>class CsvImporter:
+    def read(self, path: Path) -> Iterator[tuple[int, dict[str, Any]]]:
+        try:
+            with path.open("r", encoding="utf-8", newline="") as file:
+                reader = csv.DictReader(file)
+                for line_number, row in enumerate(reader, start=2):
+                    yield line_number, row
+        except OSError as error:
+            raise DataImportError(f"Помилка відкриття CSV файлу '{path}': {error}") from error</code></pre>
+
+<h2>17. Validation code (<code>validators.py</code>)</h2>
+<pre><code>def parse_and_validate_record(row: dict[str, Any], *, line_number: int, config: ProcessingConfig) -> SportsResult:
+    athlete_raw = str(row.get("athlete", "")).strip()
+    if not athlete_raw:
+        raise RecordValidationError("Ім'я спортсмена не може бути порожнім", line_number=line_number, field="athlete")
+
+    sport_raw = str(row.get("sport", "")).strip()
+    if config.allowed_sports and sport_raw not in config.allowed_sports:
+        raise RecordValidationError(f"Вид спорту '{sport_raw}' не дозволений", line_number=line_number, field="sport")
+
+    try:
+        result_val = float(row.get("result"))
+    except (TypeError, ValueError) as error:
+        raise RecordValidationError("Результат має бути числовим", line_number=line_number, field="result") from error
+
+    rule = config.sport_rules.get(sport_raw)
+    if rule and not (rule.min_value <= result_val <= rule.max_value):
+        raise RecordValidationError(f"Результат {result_val} виходить за межі діапазону", line_number=line_number, field="result")
+
+    return SportsResult(athlete=athlete_raw, sport=sport_raw, result=result_val, category=row["category"], timestamp=datetime.fromisoformat(row["timestamp"]))</code></pre>
+
+<h2>18. Strict vs Tolerant processing (<code>services.py</code>)</h2>
+<pre><code>for line_number, raw_row in importer.read(self.config.input_path):
+    self.statistics.total_records += 1
+    try:
+        sports_result = parse_and_validate_record(raw_row, line_number=line_number, config=self.config.processing)
+    except RecordValidationError as error:
+        self.statistics.invalid_records += 1
+        self.invalid_records.append(InvalidRecordDetail(line_number, str(raw_row), str(error), error.field))
+        logger.warning("Некоректний запис на рядку %s: %s", line_number, error)
+        if self.config.processing.skip_invalid:
+            continue
+        raise
+    self.statistics.valid_records += 1
+    yield sports_result</code></pre>
+
+<h2>19. JSON serialization та Atomic export (<code>utils.py</code>, <code>exporters.py</code>)</h2>
+<pre><code>@contextmanager
+def atomic_file_writer(target_path: Path, encoding: str = "utf-8") -> Iterator[Any]:
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = target_path.with_suffix(target_path.suffix + ".tmp")
+    try:
+        with temp_path.open("w", encoding=encoding) as file:
+            yield file
+        temp_path.replace(target_path)
+    except Exception as error:
+        temp_path.unlink(missing_ok=True)
+        raise DataExportError(f"Неможливо виконати атомарний запис у {target_path}: {error}") from error</code></pre>
+
+<h2>20. Власний context manager (<code>utils.py</code>)</h2>
+<pre><code>@contextmanager
+def logged_operation(operation_name: str) -> Iterator[None]:
+    logger.info("Початок операції: %s", operation_name)
+    start_time = perf_counter()
+    try:
+        yield
+    except Exception as error:
+        elapsed = perf_counter() - start_time
+        logger.exception("Операція '%s' зазнала аварійного збою після %.6f с: %s", operation_name, elapsed, error)
+        raise
+    else:
+        elapsed = perf_counter() - start_time
+        logger.info("Операція '%s' успішно завершена за %.6f с", operation_name, elapsed)</code></pre>
+
+<h2>21. Результат виконання програми (Screenshot execution)</h2>
+<pre>=================================================================
+ЛАБОРАТОРНА РОБОТА №5: ОБРОБКА ПОМИЛОК, ФАЙЛИ ТА СЕРІАЛІЗАЦІЯ
+Варіант 9: Імпорт та експорт спортивних результатів
+Конфігурацію успішно завантажено з: config.yaml
+Режим обробки: Tolerant (skip_invalid=True)
+=================================================================
+Початок операції: Sports Data Pipeline Processing
+WARNING: Некоректний запис на рядку 5: Ім'я спортсмена не може бути порожнім
+WARNING: Некоректний запис на рядку 10: Результат 3.8 виходить за межі допустимого діапазону [1.0, 2.5]
+WARNING: Некоректний запис на рядку 11: Вид спорту 'Стрибки з жердиною' не входить до переліку дозволених
+WARNING: Некоректний запис на рядку 12: Результат має бути дійсним числовим значенням: invalid_num
+WARNING: Некоректний запис на рядку 13: Вид спорту 'Велоспорт' не входить до переліку дозволених
+WARNING: Некоректний запис на рядку 14: Часова мітка 2020-01-01 12:00:00 є старішою за мінімально дозволену
+INFO: Звіт про некоректні записи експортовано у output\error_report.json та output\error_report.csv
+Операція 'Sports Data Pipeline Processing' успішно завершена за 0.004240 с
+-----------------------------------------------------------------
+ПІДСУМКОВА СТАТИСТИКА ВИКОНАННЯ:
+  Всього прочитано записів: 14
+  Валідних записів (успішно): 8
+  Некоректних записів (помилки): 6
+  Експортовано у output\sports_results.json: 8
+  Окремий звіт про помилки записано у: output\error_report.json
+-----------------------------------------------------------------</pre>
+
+<h2>22. Результати Експерименту 1 (Strict vs Tolerant)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Параметр</th>
+            <th>Strict Mode (skip_invalid: false)</th>
+            <th>Tolerant Mode (skip_invalid: true)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Оброблено записів</strong></td>
+            <td>1001 (зупинено на 1-му невалідному)</td>
+            <td>1010 (повний набір)</td>
+        </tr>
+        <tr>
+            <td><strong>Valid</strong></td>
+            <td>1000</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td><strong>Invalid</strong></td>
+            <td>1</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td><strong>Exported</strong></td>
+            <td>0 (транзакцію відхилено)</td>
+            <td>1000</td>
+        </tr>
+        <tr>
+            <td><strong>Завершення application</strong></td>
+            <td>Перервано винятком DataExportError</td>
+            <td>Успішно з кодом 0</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>23. Результати Експерименту 2 (Streaming vs Eager)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Кількість записів</th>
+            <th>Eager time (с)</th>
+            <th>Streaming time (с)</th>
+            <th>Eager peak RAM (MB)</th>
+            <th>Streaming peak RAM (MB)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>10 000</strong></td>
+            <td>0.1112</td>
+            <td>0.0804</td>
+            <td>4.92 MB</td>
+            <td>0.0656 MB</td>
+        </tr>
+        <tr>
+            <td><strong>100 000</strong></td>
+            <td>0.8792</td>
+            <td>0.8077</td>
+            <td>48.94 MB</td>
+            <td>0.0653 MB</td>
+        </tr>
+        <tr>
+            <td><strong>500 000</strong></td>
+            <td>4.4826</td>
+            <td>4.0566</td>
+            <td>245.17 MB</td>
+            <td>0.0653 MB</td>
+        </tr>
+    </tbody>
+</table>
+<p><em>Висновки з експерименту 2:</em> Генератори забезпечують стабільне константне споживання пам'яті $O(1)$ на рівні ~0.065 MB незалежно від кількості записів (від 10 000 до 500 000). У той же час eager-підхід вимагає лінійного зростання пам'яті $O(N)$ (до 245 MB), що призведе до аварійного вичерпання ресурсів машини при обробці багатогігабайтних CSV.</p>
+
+<h2>24. Результати Експерименту 3 (Exception Chaining)</h2>
+<pre>Traceback (most recent call last):
+  File "C:\labs\Lab_05\src\reliable_sports_importer\validators.py", line 47, in parse_and_validate_record
+    result_val = float(result_raw)
+                 ^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'not_a_number'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\labs\Lab_05\tests\experiments_runner.py", line 200, in run_experiment_3
+    parse_and_validate_record(bad_row, line_number=42, config=dummy_cfg)
+  File "C:\labs\Lab_05\src\reliable_sports_importer\validators.py", line 49, in parse_and_validate_record
+    raise RecordValidationError(
+reliable_sports_importer.exceptions.RecordValidationError: Результат має бути дійсним числовим значенням: not_a_number (рядок 42, поле 'result', значення='not_a_number')</pre>
+
+<h2>25. Результати Експерименту 4 (Atomic Output)</h2>
+<p>Під час симуляції аварійного збою всередині контекстного менеджера <code>atomic_file_writer</code> було зафіксовано такі результати:</p>
+<ul>
+    <li>Попередній валідний файл <code>output/atomic_test_production.json</code> залишився повністю неушкодженим (True).</li>
+    <li>Тимчасовий файл <code>output/atomic_test_production.json.tmp</code> було гарантовано видалено з диска блоком <code>except</code> (True).</li>
+    <li>Виняток було коректно перетворено на <code>DataExportError</code> із збереженням першопричини (True).</li>
+</ul>
+
+<h2>26. Результати Експерименту 5 (Configuration Errors / Fail-fast)</h2>
+<table>
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>Сценарій збою</th>
+            <th>Реакція системи (Fail-fast)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Відсутній файл <code>config.yaml</code></td>
+            <td><code>ConfigurationError: Конфігураційний файл не знайдено: config_non_existent.yaml</code></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Неправильний синтаксис YAML</td>
+            <td><code>ConfigurationError: Синтаксична помилка у YAML конфігурації: while parsing a flow sequence...</code></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Відсутня секція <code>input</code></td>
+            <td><code>ConfigurationError: Некоректна структура конфігурації: 'input'</code></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Некоректне правило <code>min_value > max_value</code></td>
+            <td><code>ConfigurationError: Некоректне правило для 'Стрибки': min_value (300.0) > max_value (10.0)</code></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Вхідний файл відсутній на диску</td>
+            <td><code>ConfigurationError: Вхідний файл для обробки не знайдено: missing_file.csv</code></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Порожній список дозволених видів спорту</td>
+            <td><code>ConfigurationError: Список дозволених видів спорту (allowed_sports) не може бути порожнім</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>27. Відповіді на контрольні запитання (70 запитань)</h2>
+
+<div class="qa-item"><div class="qa-q">1. Що таке exception?</div><div class="qa-a">Об'єкт у Python, що сигналізує про виникнення помилки чи нештатної ситуації під час виконання коду та змінює нормальний потік керування.</div></div>
+<div class="qa-item"><div class="qa-q">2. Для чого використовується try?</div><div class="qa-a">Для позначення захищеного блоку коду, всередині якого можливе виникнення винятків.</div></div>
+<div class="qa-item"><div class="qa-q">3. Для чого except?</div><div class="qa-a">Для перехоплення та обробки винятків заданого типу, які виникли всередині блоку try.</div></div>
+<div class="qa-item"><div class="qa-q">4. Коли виконується else після try?</div><div class="qa-a">Коли блок try завершився повністю успішно без виникнення жодних винятків.</div></div>
+<div class="qa-item"><div class="qa-q">5. Коли виконується finally?</div><div class="qa-a">Завжди: незалежно від того, сталася помилка, чи блок завершився штатно.</div></div>
+<div class="qa-item"><div class="qa-q">6. Для чого використовується raise?</div><div class="qa-a">Для явного збудження екземпляра винятку розробником.</div></div>
+<div class="qa-item"><div class="qa-q">7. Що означає raise без аргументів?</div><div class="qa-a">Повторне підняття (re-raise) поточного активного винятку з блоку except зі збереженням контексту.</div></div>
+<div class="qa-item"><div class="qa-q">8. Чому не рекомендується except: pass?</div><div class="qa-a">Маскує програмні дефекти (помилки синтаксису, typo у змінних) та блокує системні переривання (KeyboardInterrupt).</div></div>
+<div class="qa-item"><div class="qa-q">9. Чому потрібно перехоплювати конкретні exception types?</div><div class="qa-a">Щоб обробляти лише очікувані нештатні ситуації, залишаючи невідомі збої для виявлення та налагодження.</div></div>
+<div class="qa-item"><div class="qa-q">10. Що таке exception hierarchy?</div><div class="qa-a">Дерево наслідування класів винятків із спільними абстракціями на вершині (наприклад, BaseException &rarr; Exception &rarr; ApplicationError).</div></div>
+<div class="qa-item"><div class="qa-q">11. Для чого створювати custom exceptions?</div><div class="qa-a">Для надання помилкам предметного змісту, додавання структурованих атрибутів (рядок, поле) та точкового перехоплення.</div></div>
+<div class="qa-item"><div class="qa-q">12. Що таке exception chaining?</div><div class="qa-a">Механізм зв'язування винятків для збереження первинного контексту низькорівневої помилки.</div></div>
+<div class="qa-item"><div class="qa-q">13. Що означає raise ... from ...?</div><div class="qa-a">Явне зв'язування винятків, що зберігає початковий виняток у полі __cause__.</div></div>
+<div class="qa-item"><div class="qa-q">14. Яку перевагу дає chaining для debugging?</div><div class="qa-a">Відображає повну історію виникнення проблеми у traceback: від технічної помилки бібліотеки до доменного збою.</div></div>
+<div class="qa-item"><div class="qa-q">15. Що означає EAFP?</div><div class="qa-a">«Easier to Ask for Forgiveness than Permission» — спочатку виконуємо операцію, а в разі збою перехоплюємо виняток.</div></div>
+<div class="qa-item"><div class="qa-q">16. Що означає LBYL?</div><div class="qa-a">«Look Before You Leap» — перед виконанням перевіряємо всі умови за допомогою if.</div></div>
+<div class="qa-item"><div class="qa-q">17. Що таке fail-fast?</div><div class="qa-a">Підхід, за якого система падає одразу при виявленні невалідного стану, не починаючи ресурсномістких операцій.</div></div>
+<div class="qa-item"><div class="qa-q">18. Де доцільно застосовувати fail-fast?</div><div class="qa-a">При завантаженні конфігурацій, валідації параметрів підключення до БД та ініціалізації сервісів.</div></div>
+<div class="qa-item"><div class="qa-q">19. Що таке context manager?</div><div class="qa-a">Об'єкт, що визначає контекст виконання для оператора with через методи __enter__ та __exit__.</div></div>
+<div class="qa-item"><div class="qa-q">20. Для чого використовується with?</div><div class="qa-a">Для автоматичного та гарантованого управління життєвим циклом ресурсів (файли, блокування, з'єднання).</div></div>
+<div class="qa-item"><div class="qa-q">21. Які methods утворюють context manager protocol?</div><div class="qa-a">Методи __enter__() та __exit__().</div></div>
+<div class="qa-item"><div class="qa-q">22. Що робить __enter__()?</div><div class="qa-a">Ініціалізує ресурс та повертає його у блок with.</div></div>
+<div class="qa-item"><div class="qa-q">23. Що робить __exit__()?</div><div class="qa-a">Звільняє ресурс та обробляє можливий виняток.</div></div>
+<div class="qa-item"><div class="qa-q">24. Чи закриває with файл при exception?</div><div class="qa-a">Так, інтерпретатор гарантовано викликає __exit__ навіть при аварійному виході.</div></div>
+<div class="qa-item"><div class="qa-q">25. Для чого contextlib.contextmanager?</div><div class="qa-a">Декоратор для зручного створення контекстних менеджерів за допомогою генератора з yield.</div></div>
+<div class="qa-item"><div class="qa-q">26. Яку роль має yield у generator-based context manager?</div><div class="qa-a">Розділяє фазу ініціалізації ресурсу та фазу його обов'язкового закриття у finally.</div></div>
+<div class="qa-item"><div class="qa-q">27. Що таке pathlib.Path?</div><div class="qa-a">Об'єктно-орієнтоване представлення шляху у файловій системі в сучасному Python.</div></div>
+<div class="qa-item"><div class="qa-q">28. Чому pathlib кращий за ручну конкатенацію шляхів?</div><div class="qa-a">Він гарантує кросплатформеність (роздільники / та \), підтримує оператор / та має безпечний API.</div></div>
+<div class="qa-item"><div class="qa-q">29. Для чого задається encoding="utf-8"?</div><div class="qa-a">Для усунення залежності від системного локального кодування операційної системи (наприклад CP1251).</div></div>
+<div class="qa-item"><div class="qa-q">30. Що таке CSV?</div><div class="qa-a">Текстовий табличний формат з роздільниками-комами.</div></div>
+<div class="qa-item"><div class="qa-q">31. Для чого csv.reader?</div><div class="qa-a">Для побудкового читання CSV у формі списків рядків list[str].</div></div>
+<div class="qa-item"><div class="qa-q">32. Для чого csv.DictReader?</div><div class="qa-a">Для читання CSV у форматі словників dict[str, str] із заголовками як ключами.</div></div>
+<div class="qa-item"><div class="qa-q">33. Чим DictReader зручний для structured data?</div><div class="qa-a">Дозволяє звертатися за іменами колонок замість індексів, що запобігає помилкам при зміні порядку колонок.</div></div>
+<div class="qa-item"><div class="qa-q">34. Для чого csv.DictWriter?</div><div class="qa-a">Для запису словників у файл CSV із автоматичним формуванням заголовків.</div></div>
+<div class="qa-item"><div class="qa-q">35. Що таке JSON?</div><div class="qa-a">Текстовий формат обміну структурованими даними на базі масивів та ключів-значень.</div></div>
+<div class="qa-item"><div class="qa-q">36. Що таке serialization?</div><div class="qa-a">Перетворення внутрішніх об'єктів пам'яті у формат зберігання або передачі (наприклад у JSON).</div></div>
+<div class="qa-item"><div class="qa-q">37. Що таке deserialization?</div><div class="qa-a">Зворотне відновлення об'єктів мови програмування з текстового чи байтового представлення.</div></div>
+<div class="qa-item"><div class="qa-q">38. Чим json.dump() відрізняється від json.dumps()?</div><div class="qa-a">dump() пише дані прямо у файл, а dumps() повертає рядок str.</div></div>
+<div class="qa-item"><div class="qa-q">39. Чим json.load() відрізняється від json.loads()?</div><div class="qa-a">load() зчитує та парсить вміст файлу, а loads() парсить рядок із пам'яті.</div></div>
+<div class="qa-item"><div class="qa-q">40. Що таке JSONDecodeError?</div><div class="qa-a">Виняток, що сигналізує про синтаксичну некоректність документа JSON.</div></div>
+<div class="qa-item"><div class="qa-q">41. Для чого використовується YAML?</div><div class="qa-a">Зручний людино-читабельний формат для складних вкладених конфігурацій.</div></div>
+<div class="qa-item"><div class="qa-q">42. Чому рекомендується yaml.safe_load()?</div><div class="qa-a">Запобігає виконанню довільного коду з ненадійних джерел через теги Python.</div></div>
+<div class="qa-item"><div class="qa-q">43. Які типові сценарії використання JSON?</div><div class="qa-a">Взаємодія через REST API, клієнт-серверний зв'язок, передача payload.</div></div>
+<div class="qa-item"><div class="qa-q">44. Які типові сценарії використання YAML?</div><div class="qa-a">Файли налаштувань програм, CI/CD конфігурації, Kubernetes деплої.</div></div>
+<div class="qa-item"><div class="qa-q">45. Що таке configuration file?</div><div class="qa-a">Зовнішній файл для зміни параметрів програми без зміни її двійкового чи вихідного коду.</div></div>
+<div class="qa-item"><div class="qa-q">46. Чому configuration краще не hard-code у Python?</div><div class="qa-a">Щоб мати змогу змінювати поведінку в різних оточеннях (dev/prod) без повторного розгортання коду.</div></div>
+<div class="qa-item"><div class="qa-q">47. Що потрібно перевіряти у configuration?</div><div class="qa-a">Існування шляхів, діапазони чисел, типи даних та обов'язкові ключі.</div></div>
+<div class="qa-item"><div class="qa-q">48. Що таке logging?</div><div class="qa-a">Системний запис подій програми з рівнями пріоритету та контекстними даними.</div></div>
+<div class="qa-item"><div class="qa-q">49. Чим logging відрізняється від print()?</div><div class="qa-a">Надає рівні важливості, додає часові мітки, пише у файл і легко фільтрується.</div></div>
+<div class="qa-item"><div class="qa-q">50. Які існують logging levels?</div><div class="qa-a">DEBUG, INFO, WARNING, ERROR, CRITICAL.</div></div>
+<div class="qa-item"><div class="qa-q">51. Для чого logger.info()?</div><div class="qa-a">Для фіксації штатних очікуваних подій ходу виконання.</div></div>
+<div class="qa-item"><div class="qa-q">52. Для чого logger.warning()?</div><div class="qa-a">Для сповіщення про потенційні проблеми чи дефекти даних, які не зупиняють роботу.</div></div>
+<div class="qa-item"><div class="qa-q">53. Для чого logger.error()?</div><div class="qa-a">Для запису інформації про збої, через які операція не була виконана.</div></div>
+<div class="qa-item"><div class="qa-q">54. Для чого logger.exception()?</div><div class="qa-a">Логує повідомлення рівня ERROR і автоматично додає повний traceback.</div></div>
+<div class="qa-item"><div class="qa-q">55. Що містить traceback?</div><div class="qa-a">Список активних викликів функцій від точки падіння до верхнього рівня стеку.</div></div>
+<div class="qa-item"><div class="qa-q">56. Чому secrets не можна записувати в logs?</div><div class="qa-a">Через загрозу витоку паролів, API ключів та конфіденційних персональних даних.</div></div>
+<div class="qa-item"><div class="qa-q">57. Що таке streaming I/O?</div><div class="qa-a">Обробка потоку даних по одному елементу без утримання всього масиву в RAM.</div></div>
+<div class="qa-item"><div class="qa-q">58. Яка перевага streaming для великих files?</div><div class="qa-a">Фіксоване споживання оперативної пам'яті O(1) запобігає OutOfMemory.</div></div>
+<div class="qa-item"><div class="qa-q">59. Що таке eager file loading?</div><div class="qa-a">Повне зчитування всього вмісту файлу в пам'ять перед початком його аналізу.</div></div>
+<div class="qa-item"><div class="qa-q">60. Чому list(reader) може бути небажаним?</div><div class="qa-a">Він матеріалізує всі записи файлу, що аварійно вичерпує пам'ять на великих наборах.</div></div>
+<div class="qa-item"><div class="qa-q">61. Що таке strict validation mode?</div><div class="qa-a">Режим, де будь-яка неточність призводить до негайного падіння всієї операції.</div></div>
+<div class="qa-item"><div class="qa-q">62. Що таке tolerant mode?</div><div class="qa-a">Режим, де некоректні записи відкидаються або логуються, а валідні — продовжують обробку.</div></div>
+<div class="qa-item"><div class="qa-q">63. Коли доцільно використовувати strict mode?</div><div class="qa-a">У фінансових, банківських або медичних системах з нульовою толерантністю до помилок.</div></div>
+<div class="qa-item"><div class="qa-q">64. Коли tolerant mode?</div><div class="qa-a">В аналітиці великих даних, логуванні, парсингу відкритих джерел інтернету.</div></div>
+<div class="qa-item"><div class="qa-q">65. Що таке atomic write?</div><div class="qa-a">Запис у тимчасовий файл із наступною миттєвою заміною цільового файлу лише у разі успіху.</div></div>
+<div class="qa-item"><div class="qa-q">66. Для чого використовується temporary file?</div><div class="qa-a">Щоб зберегти попередній цільовий файл від пошкодження під час запису нового.</div></div>
+<div class="qa-item"><div class="qa-q">67. Що може статися при звичайному output write та аварійному завершенні?</div><div class="qa-a">Цільовий файл буде обрізано (corrupted), а попередні робочі дані — безповоротно втрачено.</div></div>
+<div class="qa-item"><div class="qa-q">68. Навіщо видаляти temporary file після error?</div><div class="qa-a">Щоб очистити дисковий простір та не залишати сміттєвих незавершених файлів.</div></div>
+<div class="qa-item"><div class="qa-q">69. Що таке JSON Lines?</div><div class="qa-a">Формат запису, в якому кожен рядок файлу є окремим валідним JSON-об'єктом.</div></div>
+<div class="qa-item"><div class="qa-q">70. Чому JSON Lines зручний для streaming?</div><div class="qa-a">Його можна читати і писати построково без необхідності парсити квадратні дужки всього масиву.</div></div>
+
+<h2>28. Висновок</h2>
+<p>Під час виконання лабораторної роботи №5 було успішно розроблено надійний модуль імпорту, валідації та експорту спортивних результатів відповідно до варіанта №9:</p>
+<ol>
+    <li>Спроектовано власну ієрархію винятків (<code>ApplicationError</code>, <code>DataError</code>, <code>RecordValidationError</code>) із передачею контексту помилок та збереженням низькорівневих причин через механізм <code>exception chaining</code> (<code>from error</code>).</li>
+    <li>Побудовано конвеєр потокової обробки на основі генераторів (Streaming I/O), що забезпечило стабільне споживання оперативної пам'яті $O(1)$ (~0.065 MB) навіть при обробці 500 000 записів, запобігаючи помилкам вичерпання пам'яті.</li>
+    <li>Реалізовано надійний контекстний менеджер атомарного запису (<code>atomic_file_writer</code>), який унеможливлює пошкодження цільових вихідних файлів при раптових аварійних зупинках.</li>
+    <li>Забезпечено гнучке конфігурування конвеєра через зовнішній YAML-файл із суворою перевіркою параметрів на етапі запуску (fail-fast).</li>
+    <li>Кодова база пройшла перевірку статичним типізатором <code>mypy</code> в суворому режимі (<code>strict = true</code>) без жодних зауважень.</li>
+</ol>
+
+</body>
+</html>
