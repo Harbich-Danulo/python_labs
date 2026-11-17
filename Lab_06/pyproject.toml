@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sports-accounting"
+version = "0.1.0"
+description = "Система обліку спортивних результатів з автоматизованим тестуванням (Лабораторна робота №6)"
+authors = [{ name = "Гарбіч Данило", email = "danylo.harbich@lnu.edu.ua" }]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "pytest-asyncio>=0.23",
+    "mypy>=1.10",
+    "types-PyYAML>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+pythonpath = ["src"]
+asyncio_mode = "auto"
+markers = [
+    "integration: marks tests as integration tests",
+    "slow: marks tests as slow-running",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["sports_accounting"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+fail_under = 85
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
