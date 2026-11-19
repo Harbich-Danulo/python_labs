@@ -1,0 +1,25 @@
+dataset_size,operation,method,workers,mean_time_s,peak_memory_mb,speedup
+10000,Statistics (Python),Sequential,1,0.001651,0.0,1.0
+10000,Statistics (NumPy),NumPy,-,0.000355,0.15,4.65
+10000,Transform (CPU-bound),Sequential,1,0.24035,0.31,1.0
+10000,Transform (CPU-bound),ThreadPool (w=1),1,0.374314,16.82,0.64
+10000,Transform (CPU-bound),ThreadPool (w=2),2,0.392817,16.26,0.61
+10000,Transform (CPU-bound),ThreadPool (w=4),4,0.384793,15.66,0.62
+10000,Transform (CPU-bound),ThreadPool (w=8),8,0.412731,15.66,0.58
+10000,Transform (CPU-bound),ProcessPool (w=1),1,0.553577,0.58,0.43
+10000,Transform (CPU-bound),ProcessPool (w=2),2,0.430172,0.58,0.56
+10000,Transform (CPU-bound),ProcessPool (w=4),4,0.420123,0.59,0.57
+10000,Transform (CPU-bound),ProcessPool (w=8),8,0.537814,0.6,0.45
+100000,Statistics (Python),Sequential,1,0.016947,0.0,1.0
+100000,Statistics (NumPy),NumPy,-,0.003983,1.53,4.25
+20000,Transform (CPU-bound),Sequential,1,0.484643,0.62,1.0
+20000,Transform (CPU-bound),ThreadPool (w=1),1,0.804078,33.6,0.6
+20000,Transform (CPU-bound),ThreadPool (w=2),2,0.803402,32.33,0.6
+20000,Transform (CPU-bound),ThreadPool (w=4),4,0.854051,31.2,0.57
+20000,Transform (CPU-bound),ThreadPool (w=8),8,0.889057,31.2,0.55
+20000,Transform (CPU-bound),ProcessPool (w=1),1,0.790625,1.15,0.61
+20000,Transform (CPU-bound),ProcessPool (w=2),2,0.564729,1.15,0.86
+20000,Transform (CPU-bound),ProcessPool (w=4),4,0.510468,1.16,0.95
+20000,Transform (CPU-bound),ProcessPool (w=8),8,0.599851,1.16,0.81
+50000,Sport Stats Cache,Cold Call,-,0.005545,0.01,1.0
+50000,Sport Stats Cache,Warm Call (LRU Cache),-,1.2e-07,0.01,45262.04
