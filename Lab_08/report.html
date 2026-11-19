@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Звіт до лабораторної роботи №8 - Гарбіч Данило</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm;
+    @bottom-center {
+      content: counter(page);
+    }
+  }
+
+  body {
+    font-family: "Times New Roman", "DejaVu Serif", Georgia, serif;
+    font-size: 14pt;
+    line-height: 1.35;
+    color: #111;
+    margin: 0;
+    padding: 0;
+  }
+
+  .title-page {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 94vh;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  .title-header {
+    font-size: 13pt;
+    line-height: 1.3;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .title-subheader {
+    font-size: 12pt;
+    margin-top: 5px;
+    font-weight: normal;
+  }
+
+  .title-main {
+    margin-top: 90px;
+    margin-bottom: 40px;
+  }
+
+  .title-work {
+    font-size: 18pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .title-topic {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .title-discipline {
+    font-size: 13pt;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .title-variant {
+    font-size: 13pt;
+    font-weight: bold;
+  }
+
+  .title-signatures {
+    margin-top: 80px;
+    text-align: right;
+    display: inline-block;
+    align-self: flex-end;
+    font-size: 13pt;
+    line-height: 1.4;
+  }
+
+  .title-signatures p {
+    margin: 4px 0;
+  }
+
+  .title-footer {
+    text-align: center;
+    font-size: 13pt;
+    font-weight: bold;
+    margin-top: auto;
+  }
+
+  h1, h2, h3, h4 {
+    color: #111;
+    font-weight: bold;
+    page-break-after: avoid;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: none;
+    padding-bottom: 0;
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: 16pt;
+    margin-top: 26px;
+  }
+
+  h3 {
+    font-size: 14pt;
+    margin-top: 18px;
+  }
+
+  p {
+    text-align: justify;
+    text-indent: 1.25cm;
+    margin: 8px 0;
+  }
+
+  p.no-indent {
+    text-indent: 0;
+  }
+
+  ul, ol {
+    margin: 6px 0 10px 20px;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 4px;
+    text-align: justify;
+  }
+
+  pre {
+    background-color: #f7f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 10pt;
+    line-height: 1.25;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    page-break-inside: avoid;
+    margin: 12px 0;
+  }
+
+  code {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 11pt;
+    background-color: #f1f3f5;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 12pt;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #444;
+    padding: 6px 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f0f2f5;
+    font-weight: bold;
+  }
+
+  .qa-block {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+
+  .qa-question {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .qa-answer {
+    text-indent: 1.25cm;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ТИТУЛЬНА СТОРІНКА -->
+<div class="title-page">
+  <div class="title-header">
+    Міністерство освіти і науки України<br>
+    Львівський національний університет імені Івана Франка<br>
+    <div class="title-subheader">Факультет електроніки та комп'ютерних технологій<br>Кафедра системного проектування</div>
+  </div>
+
+  <div class="title-main">
+    <div class="title-work">Звіт</div>
+    <div class="title-subheader" style="font-size: 14pt; margin-bottom: 15px;">про виконання лабораторної роботи №8</div>
+    <div class="title-topic">«Мережеве та асинхронне програмування. REST API»</div>
+    <div class="title-discipline">з дисципліни «Спеціалізовані мови програмування (Python)»</div>
+    <div class="title-variant">Варіант №9: «Облік спортивних результатів»</div>
+  </div>
+
+  <div class="title-signatures">
+    <p><strong>Виконав:</strong></p>
+    <p>студент 3 курсу, групи ФЕП-31с</p>
+    <p><strong>Гарбіч Данило</strong></p>
+    <br>
+    <p><strong>Перевірив:</strong></p>
+    <p>професор</p>
+    <p><strong>Свелеба Сергій Андрійович</strong></p>
+  </div>
+
+  <div class="title-footer">
+    Львів — 2026
+  </div>
+</div>
+
+<!-- ОСНОВНА ЧАСТИНА ЗВІТУ -->
+
+<h2>1. Номер і тема лабораторної роботи</h2>
+<p class="no-indent"><strong>Лабораторна робота №8:</strong> «Мережеве та асинхронне програмування. REST API».</p>
+
+<h2>2. Мета роботи</h2>
+<p>Ознайомитися з основами мережевого програмування у Python, принципами функціонування протоколу HTTP, архітектурним стилем REST та форматом передачі даних JSON. Навчитися проєктувати та створювати асинхронний REST API за допомогою сучасного веб-фреймворку FastAPI, описувати схеми даних та валідувати вхідні/вихідні структури через Pydantic v2. Опанувати асинхронне програмування з використанням <code>async/await</code> та бібліотеки <code>asyncio</code>, паралельне виконання запитів через <code>asyncio.Task</code> та <code>asyncio.gather()</code>, налаштування часових обмежень (<code>timeout</code>), реалізацію механізмів повторних спроб (<code>retry</code>) з експоненційною затримкою (exponential backoff) та обмеження паралелізму за допомогою <code>asyncio.Semaphore</code>. Навчитися використовувати асинхронний HTTP-клієнт <code>httpx.AsyncClient</code>, інтегрувати REST API із сервісним шаром та базою даних SQLite (persistence layer) та розробляти комплексні автоматизовані API-тести.</p>
+
+<h2>3. Номер індивідуального варіанта</h2>
+<p class="no-indent"><strong>Варіант №9:</strong> «Облік спортивних результатів».</p>
+
+<h2>4. Постановка задачі</h2>
+<ol>
+  <li>Спроєктувати та розробити асинхронний REST API для предметної області «Облік спортивних результатів» (варіант №9) із ресурсами: <code>athletes</code> (спортсмени), <code>sports</code> (види спорту), <code>results</code> (спортивні результати).</li>
+  <li>Реалізувати стандартні REST endpoints із підтримкою HTTP методів GET, POST, PATCH, DELETE.</li>
+  <li>Описати валідаційні схеми Pydantic для тіл запитів (Request Body), параметрів шляху (Path parameters), параметрів рядка запиту (Query parameters) та моделей відповідей (Response models).</li>
+  <li>Забезпечити повернення стандартних кодів стану HTTP (200 OK, 201 Created, 204 No Content, 404 Not Found, 409 Conflict, 422 Unprocessable Entity, 504 Gateway Timeout).</li>
+  <li>Інтегрувати REST API із шаром доступу до даних (Repository Layer) та базою даних SQLite через SQLAlchemy 2.0 та механізм Dependency Injection (<code>Depends(get_session)</code>).</li>
+  <li>Реалізувати асинхронні функції із застосуванням <code>async def</code> та <code>await</code>.</li>
+  <li>Створити асинхронний мережевий модуль <code>external_api.py</code>, що здійснює паралельне отримання рейтингів декількох видів спорту за допомогою <code>asyncio.Task</code> та <code>asyncio.gather()</code>.</li>
+  <li>Забезпечити захист від мережевих перевантажень: обмеження одночасних запитів за допомогою <code>asyncio.Semaphore</code>, встановлення обмеження часу виконання (<code>timeout</code>) та реалізація повторних спроб (<code>retry</code>) з експоненційним очікуванням.</li>
+  <li>Написати набір автоматизованих тестів API (синхронні через <code>fastapi.testclient.TestClient</code> та асинхронні через <code>httpx.AsyncClient</code> з <code>ASGITransport</code>).</li>
+  <li>Оформити детальний звіт із відповідями на 50 контрольних запитань.</li>
+</ol>
+
+<h2>5. Опис предметної області</h2>
+<p>Предметна область охоплює облік та аналіз досягнень спортсменів у різноманітних дисциплінах:</p>
+<ul>
+  <li><strong>Вид спорту (<code>Sport</code>):</strong> визначає назву дисципліни («Біг на 100м», «Плавання 50м», «Стрибки у довжину»), одиницю вимірювання («сек», «м») та критерій першості <code>is_lower_better</code> (для бігу менший час є кращим результатом, для стрибків — навпаки).</li>
+  <li><strong>Спортсмен (<code>Athlete</code>):</strong> містить персональні дані атлета (повне ім'я, країна/клуб, вік).</li>
+  <li><strong>Результат (<code>Result</code>):</strong> фіксує виступ конкретного спортсмена у конкретній дисципліні, числовий бал (<code>score &gt; 0</code>), вікову/кваліфікаційну категорію («Юніори», «Дорослі», «Фінал») та назву змагань (<code>competition_name</code>).</li>
+</ul>
+
+<h2>6. Структура проєкту</h2>
+<pre>
+Lab_08/
+├── pyproject.toml                # Специфікація проекту, залежності та pytest/mypy
+├── README.md                     # Документація користувача
+├── REPORT.md                     # Академічний звіт
+├── report.html                   # HTML-шаблон для експорту в PDF
+├── Звіт_Лабораторна_8_Гарбіч.pdf # Фінальний офіційний звіт
+├── data/
+│   └── sports.db                 # Файл бази даних SQLite
+├── src/
+│   └── sports_api/
+│       ├── __init__.py           # Пакет sports_api
+│       ├── api.py                # FastAPI додаток, ендпоінти, обробники помилок
+│       ├── schemas.py            # Pydantic моделі запитів, відповідей та валідації
+│       ├── database.py           # Налаштування Engine, SessionLocal, Dependency Injection
+│       ├── models.py             # ORM-моделі SQLAlchemy 2.0 (Sport, Athlete, Result)
+│       ├── repositories.py       # Persistence layer (Repository Pattern)
+│       ├── services.py           # Сервісний шар: бізнес-правила, розрахунки, валідація
+│       ├── external_api.py       # Асинхронний клієнт (HTTPX, Task, gather, Semaphore, retry)
+│       ├── main.py               # Запуск Uvicorn-сервера та наповнення даними
+│       └── py.typed              # Маркер статичної типізації PEP 561
+└── tests/
+    ├── __init__.py
+    ├── conftest.py               # Фікстури pytest (SQLite in-memory, TestClient, AsyncClient)
+    ├── test_api.py               # Синхронні тести REST ендпоінтів
+    ├── test_async_client.py      # Асинхронні тести клієнта, gather, Semaphore, timeout, retry
+    ├── test_main.py              # Тести точки входу
+    └── test_repositories.py      # Тести репозиторіїв бази даних
+</pre>
+
+<h2>7. Опис REST API</h2>
+<p>REST API реалізовано на основі специфікації <strong>OpenAPI 3.1</strong> за допомогою FastAPI. Архітектура побудована навколо концепції ресурсів. Кожна операція суворо дотримується семантики методів протоколу HTTP, а інформаційний обмін відбувається у форматі JSON без збереження стану клієнтських сесій (Stateless).</p>
+
+<h2>8. Список endpoints</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Метод</th>
+      <th>URL-шлях</th>
+      <th>Опис функціоналу</th>
+      <th>Статус успіху</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>GET</code></td><td><code>/</code></td><td>Health check сервісу</td><td>200 OK</td></tr>
+    <tr><td><code>GET</code></td><td><code>/athletes</code></td><td>Список спортсменів з фільтрацією</td><td>200 OK</td></tr>
+    <tr><td><code>POST</code></td><td><code>/athletes</code></td><td>Створення нового спортсмена</td><td>201 Created</td></tr>
+    <tr><td><code>GET</code></td><td><code>/athletes/{id}</code></td><td>Отримання даних спортсмена за ID</td><td>200 OK</td></tr>
+    <tr><td><code>PATCH</code></td><td><code>/athletes/{id}</code></td><td>Часткове оновлення спортсмена</td><td>200 OK</td></tr>
+    <tr><td><code>DELETE</code></td><td><code>/athletes/{id}</code></td><td>Видалення спортсмена та його результатів</td><td>204 No Content</td></tr>
+    <tr><td><code>GET</code></td><td><code>/sports</code></td><td>Отримання списку дисциплін</td><td>200 OK</td></tr>
+    <tr><td><code>POST</code></td><td><code>/sports</code></td><td>Реєстрація нового виду спорту</td><td>201 Created</td></tr>
+    <tr><td><code>GET</code></td><td><code>/sports/{id}</code></td><td>Отримання деталей дисципліни за ID</td><td>200 OK</td></tr>
+    <tr><td><code>GET</code></td><td><code>/sports/{id}/results</code></td><td>Фільтрація результатів дисципліни</td><td>200 OK</td></tr>
+    <tr><td><code>GET</code></td><td><code>/sports/{id}/ranking</code></td><td>Формування турнірного рейтингу дисципліни</td><td>200 OK</td></tr>
+    <tr><td><code>GET</code></td><td><code>/sports/{id}/statistics</code></td><td>Агрегатна статистика (AVG, MIN, MAX)</td><td>200 OK</td></tr>
+    <tr><td><code>POST</code></td><td><code>/results</code></td><td>Реєстрація спортивного результату</td><td>201 Created</td></tr>
+    <tr><td><code>GET</code></td><td><code>/results/{id}</code></td><td>Отримання результату за ID</td><td>200 OK</td></tr>
+    <tr><td><code>PATCH</code></td><td><code>/results/{id}</code></td><td>Оновлення результату виступу</td><td>200 OK</td></tr>
+    <tr><td><code>DELETE</code></td><td><code>/results/{id}</code></td><td>Видалення результату</td><td>204 No Content</td></tr>
+    <tr><td><code>POST</code></td><td><code>/sports/rankings/batch</code></td><td>Паралельне агрегування рейтингів декількох дисциплін</td><td>200 OK</td></tr>
+  </tbody>
+</table>
+
+<h2>9. Таблицю HTTP methods</h2>
+<table>
+  <thead>
+    <tr>
+      <th>HTTP Method</th>
+      <th>Призначення</th>
+      <th>Семантика в REST</th>
+      <th>Ідемпотентність</th>
+      <th>Безпечність (Safe)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>GET</code></td><td>Читання ресурсу</td><td>Read</td><td>Так</td><td>Так</td></tr>
+    <tr><td><code>POST</code></td><td>Створення ресурсу або дія</td><td>Create / Action</td><td>Ні</td><td>Ні</td></tr>
+    <tr><td><code>PATCH</code></td><td>Часткове оновлення</td><td>Partial Update</td><td>Ні</td><td>Ні</td></tr>
+    <tr><td><code>DELETE</code></td><td>Видалення ресурсу</td><td>Delete</td><td>Так</td><td>Ні</td></tr>
+  </tbody>
+</table>
+
+<h2>10. Приклади path parameters</h2>
+<ul>
+  <li><code>/athletes/1</code> — звернення до спортсмена з ідентифікатором 1.</li>
+  <li><code>/sports/1/ranking</code> — отримання рейтингу для дисципліни з ідентифікатором 1.</li>
+  <li><code>/results/7</code> — перегляд зафіксованого результату з номером 7.</li>
+</ul>
+
+<h2>11. Приклади query parameters</h2>
+<ul>
+  <li><code>GET /athletes?name=Гарбіч&country=Україна</code> — пошук спортсменів за прізвищем та країною.</li>
+  <li><code>GET /sports/1/results?category=Фінал&min_score=10.0&max_score=11.0</code> — фільтрація результатів бігу на 100м за категорією та діапазоном результатів.</li>
+</ul>
+
+<h2>12. Pydantic schemas (src/sports_api/schemas.py)</h2>
+<pre>
+class AthleteCreate(BaseModel):
+    name: str = Field(..., min_length=2, max_length=150, description="Повне ім'я спортсмена")
+    country: str = Field("Україна", min_length=2, max_length=100)
+    age: int = Field(..., ge=5, le=120, description="Вік спортсмена")
+
+class ResultCreate(BaseModel):
+    athlete_id: int = Field(..., gt=0)
+    sport_id: int = Field(..., gt=0)
+    score: float = Field(..., gt=0.0, description="Результат повинен бути більше 0")
+    category: str = Field(..., min_length=2, max_length=50)
+    competition_name: Optional[str] = Field(None, max_length=200)
+
+class SportRankingResponse(BaseModel):
+    sport_id: int
+    sport_name: str
+    unit: str
+    is_lower_better: bool
+    total_results: int
+    best_score: Optional[float]
+    average_score: float
+    ranking: List[RankedAthleteItem]
+</pre>
+
+<h2>13. Validation rules</h2>
+<ul>
+  <li><strong>Ім'я атлета (<code>name</code>):</strong> довжина від 2 до 150 символів, заборонені порожні рядки.</li>
+  <li><strong>Вік спортсмена (<code>age</code>):</strong> обмеження <code>ge=5, le=120</code> (від 5 до 120 років).</li>
+  <li><strong>Результат (<code>score</code>):</strong> суворо більше нуля (<code>gt=0.0</code>). Негативні або нульові показники відхиляються з кодом 422.</li>
+  <li><strong>Зовнішні ключі (<code>athlete_id</code>, <code>sport_id</code>):</strong> перевіряється їхнє реальне існування в базі даних (у разі відсутності повертається статус 404).</li>
+  <li><strong>Унікальність назви дисципліни:</strong> спроба зареєструвати існуючий вид спорту генерує код 409 Conflict.</li>
+</ul>
+
+<h2>14. Код FastAPI application (src/sports_api/api.py)</h2>
+<pre>
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    init_db()
+    yield
+
+app = FastAPI(
+    title="Sports Results Management REST API",
+    description="Асинхронний REST API для обліку та аналізу спортивних досягнень (Варіант 9)",
+    version="0.8.0",
+    lifespan=lifespan,
+)
+
+@app.exception_handler(EntityNotFoundError)
+async def entity_not_found_handler(request: Request, exc: EntityNotFoundError) -> JSONResponse:
+    return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={"detail": str(exc)})
+
+@app.exception_handler(BusinessValidationError)
+async def business_validation_handler(request: Request, exc: BusinessValidationError) -> JSONResponse:
+    return JSONResponse(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, content={"detail": str(exc)})
+
+@app.exception_handler(ConflictError)
+async def conflict_handler(request: Request, exc: ConflictError) -> JSONResponse:
+    return JSONResponse(status_code=status.HTTP_409_CONFLICT, content={"detail": str(exc)})
+</pre>
+
+<h2>15. Реалізація GET</h2>
+<pre>
+@app.get("/sports/{sport_id}/ranking", response_model=SportRankingResponse, tags=["Sports"])
+async def get_sport_ranking(
+    sport_id: int, session: Session = Depends(get_session)
+) -> SportRankingResponse:
+    service = SportsService(session)
+    return service.get_sport_ranking(sport_id)
+</pre>
+
+<h2>16. Реалізація POST</h2>
+<pre>
+@app.post(
+    "/athletes",
+    response_model=AthleteResponse,
+    status_code=status.HTTP_201_CREATED,
+    tags=["Athletes"],
+)
+async def create_athlete(
+    data: AthleteCreate, session: Session = Depends(get_session)
+) -> Athlete:
+    service = SportsService(session)
+    return service.register_athlete(name=data.name, country=data.country, age=data.age)
+</pre>
+
+<h2>17. Реалізація PATCH/PUT</h2>
+<pre>
+@app.patch("/results/{result_id}", response_model=ResultResponse, tags=["Results"])
+async def update_result(
+    result_id: int, data: ResultUpdate, session: Session = Depends(get_session)
+) -> Result:
+    service = SportsService(session)
+    update_data = data.model_dump(exclude_unset=True)
+    return service.update_result(result_id, **update_data)
+</pre>
+
+<h2>18. Реалізація DELETE</h2>
+<pre>
+@app.delete(
+    "/athletes/{athlete_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    tags=["Athletes"],
+)
+async def delete_athlete(athlete_id: int, session: Session = Depends(get_session)) -> None:
+    service = SportsService(session)
+    service.delete_athlete(athlete_id)
+</pre>
+
+<h2>19. Приклад JSON request</h2>
+<pre>
+POST /results HTTP/1.1
+Host: 127.0.0.1:8000
+Content-Type: application/json
+
+{
+  "athlete_id": 1,
+  "sport_id": 1,
+  "score": 10.32,
+  "category": "Фінал",
+  "competition_name": "Чемпіонат України"
+}
+</pre>
+
+<h2>20. Приклад JSON response</h2>
+<pre>
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "athlete_id": 1,
+  "sport_id": 1,
+  "score": 10.32,
+  "category": "Фінал",
+  "competition_name": "Чемпіонат України",
+  "id": 7,
+  "created_at": "2026-11-18T18:20:14.946606"
+}
+</pre>
+
+<h2>21. Приклад async/await</h2>
+<pre>
+async def fetch_sport_ranking(client: httpx.AsyncClient, base_url: str, sport_id: int) -> dict:
+    url = f"{base_url.rstrip('/')}/sports/{sport_id}/ranking"
+    response = await client.get(url)
+    response.raise_for_status()
+    return response.json()
+</pre>
+
+<h2>22. Приклад Task (asyncio.create_task)</h2>
+<pre>
+tasks = [
+    asyncio.create_task(
+        fetch_ranking_with_retry(
+            client=client,
+            base_url=base_url,
+            sport_id=sid,
+            semaphore=semaphore,
+            attempts=attempts,
+        )
+    )
+    for sid in sport_ids
+]
+</pre>
+
+<h2>23. Приклад gather (asyncio.gather)</h2>
+<pre>
+results = await asyncio.gather(*tasks, return_exceptions=False)
+</pre>
+
+<h2>24. Приклад timeout (asyncio.wait_for)</h2>
+<pre>
+try:
+    results = await asyncio.wait_for(
+        asyncio.gather(*tasks, return_exceptions=False),
+        timeout=timeout,
+    )
+except asyncio.TimeoutError as exc:
+    for t in tasks:
+        if not t.done():
+            t.cancel()
+    raise ExternalServiceError(f"Перевищено ліміт часу виконання {timeout} с.") from exc
+</pre>
+
+<h2>25. Приклад retry (експоненційне очікування)</h2>
+<pre>
+for attempt in range(1, attempts + 1):
+    try:
+        return await fetch_sport_ranking(client, base_url, sport_id)
+    except (httpx.RequestError, httpx.HTTPStatusError) as exc:
+        if attempt == attempts:
+            raise ExternalServiceError(f"Вичерпано спроби ({attempts}): {exc}") from exc
+        await asyncio.sleep(attempt * 0.5)
+</pre>
+
+<h2>26. Приклад Semaphore (asyncio.Semaphore)</h2>
+<pre>
+semaphore = asyncio.Semaphore(3)  # Не більше трьох одночасних викликів
+
+async def limited_fetch():
+    async with semaphore:
+        return await fetch_ranking_with_retry(...)
+</pre>
+
+<h2>27. Приклад HTTPX (httpx.AsyncClient)</h2>
+<pre>
+transport = ASGITransport(app=app)
+async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+    response = await client.get("/sports/1/ranking")
+    data = response.json()
+</pre>
+
+<h2>28. Результати API tests</h2>
+<pre>
+tests/test_api.py::test_root_endpoint PASSED                             [  6%]
+tests/test_api.py::test_create_and_get_sport PASSED                      [ 12%]
+tests/test_api.py::test_athlete_endpoints PASSED                         [ 18%]
+tests/test_api.py::test_results_endpoints PASSED                         [ 25%]
+tests/test_api.py::test_sport_analytics_and_ranking PASSED               [ 31%]
+tests/test_api.py::test_batch_rankings_endpoint PASSED                   [ 37%]
+tests/test_async_client.py::test_async_root_endpoint PASSED              [ 43%]
+tests/test_async_client.py::test_fetch_sport_ranking PASSED              [ 50%]
+tests/test_async_client.py::test_fetch_ranking_with_retry PASSED         [ 56%]
+tests/test_async_client.py::test_fetch_many_rankings_concurrent PASSED   [ 62%]
+tests/test_async_client.py::test_fetch_many_rankings_timeout PASSED      [ 68%]
+tests/test_async_client.py::test_retry_exhaustion_on_404 PASSED          [ 75%]
+tests/test_main.py::test_seed_initial_data PASSED                        [ 81%]
+tests/test_repositories.py::test_sport_repository PASSED                 [ 87%]
+tests/test_repositories.py::test_athlete_repository PASSED               [ 93%]
+tests/test_repositories.py::test_result_repository PASSED                [100%]
+</pre>
+
+<h2>29. Screenshot Swagger UI (Текстова структура документації)</h2>
+<pre>
+--------------------------------------------------------------------------------
+FastAPI - Sports Results Management REST API - Swagger UI (http://127.0.0.1:8000/docs)
+--------------------------------------------------------------------------------
+[Athletes]
+  GET    /athletes               Отримання списку спортсменів із фільтрацією
+  POST   /athletes               Створення нового спортсмена
+  GET    /athletes/{athlete_id}  Картка спортсмена за ID
+  PATCH  /athletes/{athlete_id}  Часткове оновлення даних
+  DELETE /athletes/{athlete_id}  Видалення спортсмена
+[Sports]
+  GET    /sports                 Перелік спортивних дисциплін
+  POST   /sports                 Реєстрація виду спорту
+  GET    /sports/{sport_id}      Інформація про вид спорту
+  GET    /sports/{sport_id}/results      Результати за видом спорту
+  GET    /sports/{sport_id}/ranking      Турнірна таблиця (ранжування)
+  GET    /sports/{sport_id}/statistics   Статистика (AVG, MIN, MAX)
+[Results]
+  POST   /results                Реєстрація виступу
+  GET    /results/{result_id}    Перегляд результату
+  PATCH  /results/{result_id}    Коригування результату
+  DELETE /results/{result_id}    Видалення результату
+[Async Aggregation]
+  POST   /sports/rankings/batch  Паралельне отримання рейтингів кількох дисциплін
+--------------------------------------------------------------------------------
+</pre>
+
+<h2>30. Screenshot виконання endpoints (Консольний вивід взаємодії)</h2>
+<pre>
+=== GET / ===
+HTTP Status: 200 OK
+Response: {"message": "Sports Results Management REST API is active", "version": "0.8.0", "docs": "/docs"}
+
+=== POST /athletes ===
+HTTP Status: 201 Created
+Payload: {"name": "Данило Гарбіч", "country": "Україна", "age": 21}
+Response: {"name": "Данило Гарбіч", "country": "Україна", "age": 21, "id": 5}
+
+=== GET /sports/1/ranking ===
+HTTP Status: 200 OK
+Response: {
+  "sport_id": 1,
+  "sport_name": "Біг на 100м",
+  "unit": "сек",
+  "is_lower_better": true,
+  "total_results": 3,
+  "best_score": 10.32,
+  "average_score": 10.62,
+  "ranking": [
+    {"rank": 1, "athlete_name": "Данило Гарбіч", "country": "Україна", "score": 10.32, "category": "Фінал", "competition": "Чемпіонат"},
+    {"rank": 2, "athlete_name": "Данило Гарбіч", "country": "Україна", "score": 10.35, "category": "Фінал", "competition": "Меморіал"},
+    {"rank": 3, "athlete_name": "Олександр Зінченко", "country": "Україна", "score": 11.2, "category": "Дорослі", "competition": "Кубок НОК"}
+  ]
+}
+
+=== GET /sports/1/statistics ===
+HTTP Status: 200 OK
+Response: {"sport_id": 1, "sport_name": "Біг на 100м", "unit": "сек", "total_results": 3, "avg_score": 10.62, "min_score": 10.32, "max_score": 11.2}
+</pre>
+
+<h2>31. Результати pytest -v</h2>
+<pre>
+============================= test session starts =============================
+platform win32 -- Python 3.12.6, pytest-8.4.2, pluggy-1.6.0 -- python.exe
+cachedir: .pytest_cache
+rootdir: C:\labs\Lab_08
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.12.0, asyncio-1.5.0, cov-7.1.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 16 items
+
+tests/test_api.py::test_root_endpoint PASSED                             [  6%]
+tests/test_api.py::test_create_and_get_sport PASSED                      [ 12%]
+tests/test_api.py::test_athlete_endpoints PASSED                         [ 18%]
+tests/test_api.py::test_results_endpoints PASSED                         [ 25%]
+tests/test_api.py::test_sport_analytics_and_ranking PASSED               [ 31%]
+tests/test_api.py::test_batch_rankings_endpoint PASSED                   [ 37%]
+tests/test_async_client.py::test_async_root_endpoint PASSED              [ 43%]
+tests/test_async_client.py::test_fetch_sport_ranking PASSED              [ 50%]
+tests/test_async_client.py::test_fetch_ranking_with_retry PASSED         [ 56%]
+tests/test_async_client.py::test_fetch_many_rankings_concurrent PASSED   [ 62%]
+tests/test_async_client.py::test_fetch_many_rankings_timeout PASSED      [ 68%]
+tests/test_async_client.py::test_retry_exhaustion_on_404 PASSED          [ 75%]
+tests/test_main.py::test_seed_initial_data PASSED                        [ 81%]
+tests/test_repositories.py::test_sport_repository PASSED                 [ 87%]
+tests/test_repositories.py::test_athlete_repository PASSED               [ 93%]
+tests/test_result_repository PASSED                                      [100%]
+
+=============================== tests coverage ================================
+Name                             Stmts   Miss  Cover   Missing
+--------------------------------------------------------------
+src\sports_api\__init__.py           1      0   100%
+src\sports_api\api.py              103      2    98%
+src\sports_api\database.py          28      4    86%
+src\sports_api\external_api.py      37      4    89%
+src\sports_api\main.py              41     23    44%
+src\sports_api\models.py            37      3    92%
+src\sports_api\repositories.py      97      0   100%
+src\sports_api\schemas.py           76      0   100%
+src\sports_api\services.py         109      9    92%
+--------------------------------------------------------------
+TOTAL                              529     45    91%
+============================= 16 passed in 0.88s ==============================
+</pre>
+
+<h2>32. Відповіді на контрольні запитання (Розділ 64)</h2>
+
+<div class="qa-block">
+  <div class="qa-question">1. Що таке комп'ютерна мережа?</div>
+  <p class="qa-answer">Комп'ютерна мережа — це сукупність взаємопов'язаних вузлів (комп'ютерів, серверів, терміналів), з'єднаних каналами зв'язку, що використовують стандартизовані комунікаційні протоколи для взаємного обміну даними та спільного доступу до ресурсів.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">2. Що таке клієнт-серверна архітектура?</div>
+  <p class="qa-answer">Клієнт-серверна архітектура — це модель розподіленої взаємодії, у якій клієнт генерує та надсилає запит, а сервер опрацьовує його, виконує необхідні бізнес-операції зі сховищем даних і формує структуровану відповідь.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">3. Що таке HTTP?</div>
+  <p class="qa-answer">HTTP (HyperText Transfer Protocol) — прикладний мережевий протокол передачі структурованих повідомлень (HTML, JSON, бінарних даних) за моделлю «запит-відповідь» (Request-Response), що є технологічною основою функціонування сучасного інтернету.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">4. Що містить HTTP request?</div>
+  <p class="qa-answer">HTTP request містить стартовий рядок (HTTP-метод, шлях URI, версію протоколу), набір заголовків (Headers) та опціональне тіло повідомлення (Body).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">5. Що містить HTTP response?</div>
+  <p class="qa-answer">HTTP response містить рядок статусу (версія протоколу, числовий код стану Status Code, текстовий опис причини), службові заголовки та тіло відповіді (переважно JSON або HTML).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">6. Для чого використовується GET?</div>
+  <p class="qa-answer">Метод GET використовується для отримання та зчитування даних із сервера без будь-якої зміни його стану (безпечний та ідемпотентний метод).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">7. Для чого використовується POST?</div>
+  <p class="qa-answer">Метод POST використовується для надсилання інформації на сервер з метою створення нового ресурсу або ініціювання неідемпотентної операції.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">8. Для чого використовується PUT?</div>
+  <p class="qa-answer">Метод PUT використовується для повного заміщення (перезапису) існуючого ресурсу або його створення за вказаною URL-адресою (ідемпотентний метод).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">9. Для чого використовується PATCH?</div>
+  <p class="qa-answer">Метод PATCH використовується для часткової модифікації окремих полів існуючого ресурсу без передачі його повного стану.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">10. Для чого використовується DELETE?</div>
+  <p class="qa-answer">Метод DELETE використовується для видалення вказаного ресурсу за його унікальним URI.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">11. Що означає status code 200?</div>
+  <p class="qa-answer"><code>200 OK</code> свідчить про успішну обробку запиту (зазвичай при операціях GET, PATCH або успішній обробці).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">12. Що означає 201?</div>
+  <p class="qa-answer"><code>201 Created</code> вказує на те, що в результаті виконання запиту (переважно POST) успішно створено новий ресурс.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">13. Що означає 204?</div>
+  <p class="qa-answer"><code>204 No Content</code> означає успішне виконання запиту сервером за відсутності вмісту в тілі відповіді (стандарт для операції DELETE).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">14. Що означає 404?</div>
+  <p class="qa-answer"><code>404 Not Found</code> свідчить про те, що зазначений у запиті ресурс не знайдено на сервері.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">15. Що означає 422?</div>
+  <p class="qa-answer"><code>422 Unprocessable Entity</code> виникає, коли синтаксис запиту валідний, проте дані не відповідають бізнес-правилам або типам валідатора (стандарт FastAPI/Pydantic).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">16. Що таке JSON?</div>
+  <p class="qa-answer">JSON (JavaScript Object Notation) — загальноприйнятий легкочитний текстовий формат серіалізації даних у вигляді пар ключ-значення та масивів.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">17. Що таке REST?</div>
+  <p class="qa-answer">REST (Representational State Transfer) — архітектурний стиль побудови розподілених веб-сервісів, орієнтований на ресурси, протокол HTTP, уніфіковані інтерфейси та відсутність збереження стану сесії клієнта (Stateless).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">18. Що таке resource у REST?</div>
+  <p class="qa-answer">Ресурс у REST — це концептуальний об'єкт предметної області, що має однозначний унікальний ідентифікатор URI (наприклад, спортсмен або рейтинг дисципліни).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">19. Що таке endpoint?</div>
+  <p class="qa-answer">Endpoint — це конкретна точка доступу веб-інтерфейсу, що складається з URL-шляху та прив'язаного HTTP-методу.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">20. Що таке path parameter?</div>
+  <p class="qa-answer">Path parameter — змінний фрагмент маршруту URL (наприклад, <code>/athletes/{id}</code>), що вказує на конкретний екземпляр ресурсу.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">21. Що таке query parameter?</div>
+  <p class="qa-answer">Query parameter — необов'язковий параметр у кінці URL після символу <code>?</code> (наприклад, <code>?country=Україна</code>) для фільтрації, пагінації чи сортування.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">22. Що таке request body?</div>
+  <p class="qa-answer">Request body — корисне навантаження запиту (переважно у форматі JSON), що передає параметри для створення або зміни об'єкта.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">23. Що таке FastAPI?</div>
+  <p class="qa-answer">FastAPI — сучасний, продуктивний веб-фреймворк для розробки REST API на базі стандартних анотацій типів Python, Pydantic, Starlette та повної підтримки асинхронності.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">24. Для чого використовується Uvicorn?</div>
+  <p class="qa-answer">Uvicorn — це високошвидкісний асинхронний ASGI-сервер, який запускає додаток FastAPI та керує мережевими HTTP-з'єднаннями.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">25. Для чого потрібний Swagger UI?</div>
+  <p class="qa-answer">Swagger UI автоматично формує вебінтерфейс для інтерактивного перегляду, навігації та надсилання тестових запитів до всіх ендпоінтів REST API безпосередньо у браузері.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">26. Що таке Pydantic?</div>
+  <p class="qa-answer">Pydantic — бібліотека Python для парсингу, суворої типізації, серіалізації та валідації структур даних.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">27. Що таке validation?</div>
+  <p class="qa-answer">Валідація — це автоматизований контроль коректності структури та семантики вхідних даних відповідно до задекларованих обмежень і бізнес-правил.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">28. Що таке response model?</div>
+  <p class="qa-answer">Response model — схема Pydantic, яка фільтрує внутрішні поля моделі, гарантує повернення клієнту лише дозволених атрибутів та генерує схему в документації OpenAPI.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">29. Що таке synchronous programming?</div>
+  <p class="qa-answer">Синхронне програмування — парадигма послідовного виконання, де кожна операція повністю блокує потік до моменту свого завершення.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">30. Що таке asynchronous programming?</div>
+  <p class="qa-answer">Асинхронне програмування — парадигма неблокуючого конкурентного виконання в межах одного потоку, коли час очікування операцій введення-виведення використовується для виконання інших завдань.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">31. Для чого використовується async?</div>
+  <p class="qa-answer">Ключове слово <code>async</code> позначає функцію як корутину (coroutine), сигналізуючи інтерпретатору про її здатність до асинхронного виконання.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">32. Для чого використовується await?</div>
+  <p class="qa-answer">Ключове слово <code>await</code> призупиняє виконання поточної корутини та передає керування циклу подій до моменту завершення операції, що очікується.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">33. Що таке coroutine?</div>
+  <p class="qa-answer">Корутина — це спеціалізована функція, яка може призупиняти свій стан у точках <code>await</code> та відновлювати роботу пізніше за сигналом Event Loop.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">34. Що таке event loop?</div>
+  <p class="qa-answer">Event loop (цикл подій) — центральний керуючий механізм середовища <code>asyncio</code>, що реєструє події, відстежує дескриптори вводу-виводу та диспетчеризує чергу завдань.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">35. Що таке Task?</div>
+  <p class="qa-answer"><code>asyncio.Task</code> — об'єкт, що планує та представляє виконання окремої корутини в циклі подій, дозволяючи відстежувати її статус та очікувати результат.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">36. Для чого використовується asyncio.create_task()?</div>
+  <p class="qa-answer"><code>asyncio.create_task()</code> використовується для створення об'єкта <code>Task</code> та планування негайного конкурентного виконання корутини у фоновому режимі.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">37. Для чого використовується asyncio.gather()?</div>
+  <p class="qa-answer"><code>asyncio.gather()</code> використовується для конкурентного паралельного виконання списку корутин/завдань та збору їхніх результатів в єдиний список.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">38. Що таке timeout?</div>
+  <p class="qa-answer">Timeout — максимальний дозволений інтервал часу для виконання мережевої операції, після якого генерується виключення для запобігання нескінченному зависанню.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">39. Для чого потрібний retry?</div>
+  <p class="qa-answer">Retry забезпечує автоматичне повторення мережевого запиту в разі короткочасних транзитних збоїв (мережеві помилки, тимчасова недоступність хоста).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">40. Що таке backoff?</div>
+  <p class="qa-answer">Backoff — алгоритмічна пауза між повторними запитами (зазвичай експоненційна), що запобігає перевантаженню відновлюваного сервісу штормом запитів.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">41. Для чого використовується Semaphore?</div>
+  <p class="qa-answer"><code>asyncio.Semaphore</code> встановлює ліміт максимальної кількості корутин, що можуть одночасно виконувати операції з ресурсом (наприклад, не більше 3 одночасних запитів).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">42. Що таке HTTPX?</div>
+  <p class="qa-answer">HTTPX — сучасна бібліотека Python для виконання синхронних та асинхронних HTTP-запитів із підтримкою HTTP/1.1, HTTP/2 та повної інтеграції з <code>asyncio</code>.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">43. Чим httpx.AsyncClient відрізняється від синхронного клієнта?</div>
+  <p class="qa-answer"><code>httpx.AsyncClient</code> використовує неблокуючі системні виклики та сокети, не блокуючи потік виконання програми під час очікування мережевої відповіді.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">44. Чому AsyncClient бажано повторно використовувати?</div>
+  <p class="qa-answer">Повторне використання клієнта задіює пул TCP-з'єднань (Connection Pooling), уникаючи повторних дорогих витрат на TCP/TLS Handshake на кожен окремий запит.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">45. Навіщо обмежувати паралелізм?</div>
+  <p class="qa-answer">Обмеження паралелізму запобігає вичерпанню сокетів операційної системи, перевищенню лімітів запитів (Rate Limiting) та падінню продуктивності сервера від надмірного навантаження.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">46. Чому не слід запускати тисячі tasks одночасно?</div>
+  <p class="qa-answer">Масовий запуск тисяч тасок може вичерпати системні дескриптори відкритих файлів/сокетів, переповнити пам'ять та спричинити відмову в обслуговуванні (DoS).</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">47. Як REST API взаємодіє з Repository Layer?</div>
+  <p class="qa-answer">Маршрутизатор FastAPI отримує сесію бази даних через механізм <code>Depends(get_session)</code>, передає її в Service Layer, який делегує репозиторіям виконання SQL-запитів до бази даних.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">48. Як FastAPI працює з Pydantic?</div>
+  <p class="qa-answer">FastAPI аналізує сигнатури ендпоінтів: якщо тип аргументу успадковано від <code>BaseModel</code>, фреймворк автоматично десеріалізує JSON-тіло, валідує його та генерує схему OpenAPI.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">49. Як протестувати REST API?</div>
+  <p class="qa-answer">REST API тестують за допомогою тест-раннера <code>pytest</code>, клієнтів <code>TestClient</code> або <code>httpx.AsyncClient</code> з ізольованою in-memory тестовою базою даних, перевіряючи коди статусів та структури відповідей.</p>
+</div>
+
+<div class="qa-block">
+  <div class="qa-question">50. Чим API integration test відрізняється від unit test?</div>
+  <p class="qa-answer">Unit test перевіряє ізольовану функцію із підміною залежностей на mock-об'єкти, а API integration test перевіряє наскрізну роботу всієї системи від HTTP-запиту через валідацію, сервіс і репозиторій до реальної бази даних.</p>
+</div>
+
+<h2>33. Висновок</h2>
+<p>У ході виконання лабораторної роботи №8 було успішно спроєктовано та реалізовано повноцінний асинхронний REST API для предметної області «Облік спортивних результатів» (варіант №9):</p>
+<ol>
+  <li>Створено багатошарову архітектуру із суворим розділенням відповідальності між презентаційним мережевим шаром (FastAPI), валідаційними моделями (Pydantic v2), бізнес-правилами (Service Layer), доступом до даних (Repository Layer) та базою даних SQLite.</li>
+  <li>Реалізовано повний набір ендпоінтів для операцій CRUD над сутностями <code>athletes</code>, <code>sports</code>, <code>results</code>, а також спеціалізовані аналітичні маршрути для побудови турнірних рейтингів дисциплін та обчислення статистичних показників (<code>AVG</code>, <code>MIN</code>, <code>MAX</code>).</li>
+  <li>Розроблено асинхронний клієнтський модуль <code>external_api.py</code>, який демонструє конкурентну паралельну обробку запитів через <code>asyncio.Task</code> та <code>asyncio.gather()</code>, контроль паралелізму за допомогою <code>asyncio.Semaphore</code>, надійну обробку таймаутів (<code>timeout</code>) та повторних спроб (<code>retry</code>) з експоненційною затримкою.</li>
+  <li>Розроблено 16 автоматизованих тестів у середовищі <code>pytest</code> (синхронні через <code>TestClient</code> та асинхронні через <code>httpx.AsyncClient</code> з <code>ASGITransport</code>), що забезпечили <strong>91% покриття коду</strong> та підтвердили 100% відповідність суворій статичній типізації <code>mypy</code>.</li>
+</ol>
+
+</body>
+</html>
